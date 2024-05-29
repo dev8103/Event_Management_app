@@ -4,6 +4,7 @@ const dotenv = require("dotenv").config();
 
 // custom modules
 const eventRoutes = require("./routes/eventRoutes");
+const errorHandler = require("./middleware/errorHandlers");
 
 // variables
 const app = express();
@@ -15,6 +16,11 @@ app.use(express.json());
 // routes
 app.use("/api/events",eventRoutes);
 
+
+
+// error Handler 
+// it should be after the all routes else it will not work..
+app.use(errorHandler);
 
 
 // server listening

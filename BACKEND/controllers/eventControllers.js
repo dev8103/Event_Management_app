@@ -1,13 +1,16 @@
+// asyncHandler is a better way to find errors in async promise
+// so we dont have to write try catch block in every controllers.
+const asyncHandler = require("express-async-handler");
 
-const getEvents = (req,res)=>{
+const getEvents = asyncHandler (async (req,res)=>{
     res.json({message:"Get all events"});
-}
+});
 
-const getEventbyId = (req,res)=>{
+const getEventbyId = asyncHandler (async (req,res)=>{
     res.json({message:`Get event for ${req.params.id}`});
-}
+})
 
-const createEvent = (req,res)=>{
+const createEvent = asyncHandler (async (req,res)=>{
     console.log(req.body);
     const {name,venue,singer} = req.body;
     if(!name || !venue || !singer){
@@ -15,15 +18,15 @@ const createEvent = (req,res)=>{
         throw new Error("All fields are mendatory.");
     }
     res.json({message:"Create event"});
-}
+})
 
-const updateEvent = (req,res)=>{
+const updateEvent = asyncHandler (async (req,res)=>{
     res.json({message:`Update event for ${req.params.id}`});
-}
+})
 
-const deleteEvent = (req,res)=>{
+const deleteEvent = asyncHandler (async (req,res)=>{
     res.json({message:`Delete event for ${req.params.id}`});
-}
+})
 
 
 module.exports = {
