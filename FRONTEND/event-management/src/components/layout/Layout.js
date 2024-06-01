@@ -1,8 +1,17 @@
 import React from 'react'
+import Navbar from '../navbar/Navbar'
+import Footer from '../footer/Footer'
 
-function Layout() {
+function Layout({children}) {
   return (
-    <div>Layout</div>
+    <div>
+        <Navbar/>
+        <div className='h-screen'>
+            {children}
+        </div>
+        <Footer/>
+    </div>
+
   )
 }
 
