@@ -53,10 +53,11 @@ const EventSchema = mongoose.Schema({
             required: [true,"Please add mobile number of event coordinator."],
         }
     }],
-    // user: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User'
-    // },
+    clubCommittee: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ClubCommittee',
+        required: [true, "Please add the organizing club/committee."]
+    },
     createdAt: {
         type: Date,
         default: Date.now

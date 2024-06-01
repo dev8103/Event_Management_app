@@ -20,20 +20,35 @@ app.use(express.json());
 
 // functions
 
+// events
 const getEvents = require("./controllers/events/getEvents");
 const createEvent = require("./controllers/events/createEvent");
 const getEventbyId = require("./controllers/events/getEventbyId");
 const updateEvent = require("./controllers/events/updateEvent");
 const deleteEvent = require("./controllers/events/deleteEvent");
+// clubcommittee
+const getCC = require("./controllers/ClubCommittee/getCC");
+const getCCbyid = require("./controllers/ClubCommittee/getCCbyid");
+const createCC = require("./controllers/ClubCommittee/createCC");
+const updateCC = require("./controllers/ClubCommittee/updateCC");
+const deleteCC = require("./controllers/ClubCommittee/deleteCC");
 
 // routes
 
 // events
-app.get("/cc/events/get",getEvents);
-app.get("/cc/events/getbyid/:id",getEventbyId);
-app.post("/cc/events/create",createEvent);
-app.put("/cc/events/update/:id",updateEvent);
-app.delete("/cc/events/delete/:id",deleteEvent);
+app.get("/events/get",getEvents);
+app.get("/events/getbyid/:id",getEventbyId);
+app.post("/events/create",createEvent);
+app.put("/events/update/:id",updateEvent);
+app.delete("/events/delete/:id",deleteEvent);
+// ClubCommittee
+app.get("/cc/get",getCC);
+app.get("/cc/getbyid/:id",getCCbyid);
+app.post("/cc/create",createCC);
+app.put("/cc/update/:id",updateCC);
+app.delete("/cc/delete/:id",deleteCC);
+
+
 
 
 // invalid urls handling..

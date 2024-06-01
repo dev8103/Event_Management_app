@@ -8,8 +8,8 @@ const deleteEvent =  (async (req,res)=>{
             throw new Error("Event not Found.");    
         }
 
-        const updatedEvent = await Event.findByIdAndDelete(req.params.id,req.body,{new:true});
-        res.status(200).json(updatedEvent);
+        const deletedEvent = await Event.findByIdAndDelete(req.params.id);
+        res.status(200).json(deletedEvent);
     }
     catch(error){
         console.log("this error is coming from controllers/events/deleteEvent");
