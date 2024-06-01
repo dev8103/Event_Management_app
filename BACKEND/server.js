@@ -32,6 +32,8 @@ const getCCbyid = require("./controllers/ClubCommittee/getCCbyid");
 const createCC = require("./controllers/ClubCommittee/createCC");
 const updateCC = require("./controllers/ClubCommittee/updateCC");
 const deleteCC = require("./controllers/ClubCommittee/deleteCC");
+// mailer
+const sendMail = require("./mailer/mailer");
 
 // routes
 
@@ -48,6 +50,8 @@ app.post("/cc/create",createCC);
 app.put("/cc/update/:id",updateCC);
 app.delete("/cc/delete/:id",deleteCC);
 
+
+app.get("/sendmail",sendMail);
 
 
 
