@@ -3,7 +3,6 @@ import Layout from '../../components/layout/Layout'
 import { TextField } from '@mui/material'
 import { Player } from '@lottiefiles/react-lottie-player'
 
-
 function Login() {
   return (
     <Layout>

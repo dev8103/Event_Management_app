@@ -10,7 +10,7 @@ function Navbar() {
             </div>
             <div className='w-full flex justify-end gap-9 pr-12 items-center'>
                 <a href="/">Home</a>
-                <a href="/booklist">Eventlist</a>
+                <a href="/allevent">Eventlist</a>
                 <a href='/signup'>Sign Up</a>
                 <a href="">Log Out</a>
                 <a href="/profile" className='text-3xl'><FaRegUserCircle /></a>
