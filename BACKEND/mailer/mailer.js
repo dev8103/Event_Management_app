@@ -14,8 +14,10 @@ const mailTransporter = nodemailer.createTransport({
 });
 
 mailTransporter.verify((error, success) => {
-    if (error) console.log(error);
-    console.log("Server is ready to take our messages");
+    if (error) 
+        console.log(error);
+
+    console.log("Mailer is ready to send emails.");
 });
 
 
@@ -47,9 +49,7 @@ const signup = (async (email, otp) => {
         subject: 'Verification of email',
         text:`OTP for the verification of your mail is ${otp}.`,
     };
-
-    console.log(otp);
-
+    
     const s = await mailTransporter.sendMail(mailDetails, function (err, data) {
         if (err) {
             console.log('Error Occur in mailer.js/signup');

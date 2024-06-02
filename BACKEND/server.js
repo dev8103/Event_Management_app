@@ -56,9 +56,8 @@ app.put("/cc/update/:id",updateCC);
 app.delete("/cc/delete/:id",deleteCC);
 // student
 app.post("/student/signup",signupStudent);
-app.get("/student/login",loginStudent);
+app.post("/student/login",loginStudent);
 app.get("/student/get",getStudent);
-
 app.post('/student/verifyotp',verifyOtp);
 
 
