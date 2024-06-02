@@ -12,6 +12,11 @@ const ClubCommitteeSchema = mongoose.Schema({
     email: {
         type: String,
         required: [true, "Please add the club/committee's email."],
+        unique:true,
+    },
+    password:{
+        type: String,
+        required: [true,"Please add the password."]
     },
     createdAt: {
         type: Date,

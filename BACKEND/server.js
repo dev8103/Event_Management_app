@@ -32,6 +32,11 @@ const getCCbyid = require("./controllers/ClubCommittee/getCCbyid");
 const createCC = require("./controllers/ClubCommittee/createCC");
 const updateCC = require("./controllers/ClubCommittee/updateCC");
 const deleteCC = require("./controllers/ClubCommittee/deleteCC");
+// student
+const signupStudent = require("./controllers/students/signupStudent");
+const loginStudent = require("./controllers/students/loginStudent");
+const getStudent = require("./controllers/students/getStudent");
+const verifyOtp = require('./controllers/students/verifyOtp');
 // mailer
 const sendMail = require("./mailer/mailer");
 
@@ -49,9 +54,15 @@ app.get("/cc/getbyid/:id",getCCbyid);
 app.post("/cc/create",createCC);
 app.put("/cc/update/:id",updateCC);
 app.delete("/cc/delete/:id",deleteCC);
+// student
+app.post("/student/signup",signupStudent);
+app.get("/student/login",loginStudent);
+app.get("/student/get",getStudent);
+
+app.post('/student/verifyotp',verifyOtp);
 
 
-app.get("/sendmail",sendMail);
+// app.get("/sendmail",sendMail);
 
 
 
