@@ -13,6 +13,10 @@ const EventSchema = mongoose.Schema({
         type: String,
         required: [true,"Please add the event Organiser name."],
     },
+    clubCommitteeEmail: {
+        type: String,
+        required: [true, "Please add the organizing club/committee email address."]
+    },
     startTime: {
         type: String,
         required: [true,"Please add the starting time."],
@@ -53,11 +57,6 @@ const EventSchema = mongoose.Schema({
             required: [true,"Please add mobile number of event coordinator."],
         }
     }],
-    clubCommittee: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'ClubCommittee',
-        required: [true, "Please add the organizing club/committee."]
-    },
     createdAt: {
         type: Date,
         default: Date.now

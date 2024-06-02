@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 
-const student = require('../../models/studentModel');
+const clubcommittee = require('../../models/ClubCommitteeModel');
 
-const loginStudent = async (req,res)=>{
+const loginCC = async (req,res)=>{
     const email = req.body.email;
     const password = req.body.password;
     
@@ -18,46 +18,30 @@ const loginStudent = async (req,res)=>{
         }
     }
     catch(error){
-        console.log("This error is coming from loginStudent.js/field part");
+        console.log("This error is coming from loginCC.js/field part");
         console.log(error);
         res.status(401).json({message:error.message});
         return;
     }
 
     // validation part
-    const curStudent = await student.findOne({email});
+    const curCC = await clubcommittee.findOne({email});
     try{
-        if(curStudent == null){
+        if(curCC == null){
             // return res.status(400).json({message:"Please enter valid email address."});
             res.status(401);
             throw new Error("Please enter valid email address.");
         }
     }
     catch(error){
-        console.log("This error is coming from loginStudent.js/validation part");
-        console.log(error);
-        res.status(401).json({message:error.message});
-        return;
-    }
-
-    // verification part
-    // console.log(curStudent);
-    try{
-        if(curStudent.isverified == false){
-            // return res.status(400).json({message:"Please verify your email address."});
-            res.status(401);
-            throw new Error("Please verify your email address first.");
-        }
-    }
-    catch(error){
-        console.log("This error is coming from loginStudent.js/verification part");
+        console.log("This error is coming from loginCC.js/validation part");
         console.log(error);
         res.status(401).json({message:error.message});
         return;
     }
     
     // password verification part
-    const hashedpassword = curStudent.password;
+    const hashedpassword = curCC.password;
     try{    
         const match = await bcrypt.compare(password,hashedpassword);
         
@@ -66,11 +50,12 @@ const loginStudent = async (req,res)=>{
             res.status(401);
             throw new Error("Please enter valid password.");
         }
+
         const accessToken = jwt.sign(
             {
                 user:{
-                    name : curStudent.name,
-                    email : curStudent.email,
+                    name : curCC.name,
+                    email : curCC.email,
                 },
             },
             process.env.JWT_SECRET_KEY,
@@ -79,7 +64,7 @@ const loginStudent = async (req,res)=>{
         return res.status(200).json({accessToken});
     }
     catch(error){
-        console.log("This error is coming from loginStudent.js/password verification part");
+        console.log("This error is coming from loginCC.js/password verification part");
         console.log(error);
         res.status(401).json({message:error.message});
         return;
@@ -87,4 +72,4 @@ const loginStudent = async (req,res)=>{
 
 };
 
-module.exports = loginStudent;
+module.exports = loginCC;

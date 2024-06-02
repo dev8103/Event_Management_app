@@ -1,14 +1,6 @@
 const mongoose = require('mongoose');
 
-const ClubCommitteeSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: [true, "Please add the club/committee name."],
-    },
-    description: {
-        type: String,
-        required: [true, "Please add the club/committee description."],
-    },
+const sbgSchema = mongoose.Schema({
     email: {
         type: String,
         required: [true, "Please add the clube/committee email."],
@@ -28,4 +20,4 @@ const ClubCommitteeSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('ClubCommittee', ClubCommitteeSchema);
+module.exports = mongoose.model('sbg', sbgSchema);
