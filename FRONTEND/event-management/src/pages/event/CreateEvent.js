@@ -1,7 +1,12 @@
 import React from 'react'
 import Layout from '../../components/layout/Layout'
+import { useNavigate } from 'react-router-dom'
 
 function CreateEvent() {
+  const navigate=useNavigate();
+  const alleventpage=()=>{
+    navigate('/allevent')
+  }
   return (
     <div>
         <div className='h-full bg-white p-2'>
@@ -82,7 +87,9 @@ function CreateEvent() {
               <input type="number" name="phone" id="" className='h-10 border rounded-md px-3'/>
             </div>
             <div className='flex flex-col justify-center gap-2 pt-2'>
-              <button className='btn bg-indigo-600 border rounded-md h-10 hover:bg-slate-500 text-white font-semibold'>Add Event</button>
+              <button 
+                className='btn bg-indigo-600 border rounded-md h-10 hover:bg-slate-500 text-white font-semibold'
+                onClick={alleventpage}>Add Event</button>
             </div>
           </div>
         </div>

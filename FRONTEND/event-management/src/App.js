@@ -8,6 +8,10 @@ import NoPage from './pages/nopage/NoPage'
 import CreateEvent from './pages/event/CreateEvent'
 import AllEventList from './pages/event/AllEventList'
 import DeletePopUp from './components/popup/DeletePopUp'
+import EventDetails from './pages/event/EventDetails'
+import CollegeCommittees from './pages/committee/CollegeCommittees'
+import CommitteeDetails from './pages/committee/CommitteeDetails'
+import Profile from './pages/profile/Profile'
 
 function App() {
   return (
@@ -20,6 +24,10 @@ function App() {
           <Route path='/create' element={<CreateEvent/>}/>
           <Route path='/allevent' element={<AllEventList/>}/>
           <Route path='/delete' element={<DeletePopUp/>}/>
+          <Route path='/eventdetails' element={<EventDetails/>}/>
+          <Route path='/collegecommittee' element={<CollegeCommittees/>}/>
+          <Route path='/committeedetail' element={<CommitteeDetails/>}/>
+          <Route path='/profile' element={<Profile/>}/>
           <Route path='/*' element={<NoPage/>}/>
         </Routes>
       </Router>

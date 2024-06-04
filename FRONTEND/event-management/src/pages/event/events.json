@@ -1,0 +1,393 @@
+[
+    {
+        "id": "evt001",
+        "name": "ReactJS Workshop",
+        "mode": "offline",
+        "location": "New York, NY",
+        "startDate": "2024-06-01T10:00:00",
+        "endDate": "2024-06-01T16:00:00",
+        "capacity": 50,
+        "registeredCount": 45
+    },
+    {
+        "id": "evt002",
+        "name": "JavaScript Conference",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-06-15T09:00:00",
+        "endDate": "2024-06-15T17:00:00",
+        "capacity": 200,
+        "registeredCount": 150
+    },
+    {
+        "id": "evt003",
+        "name": "Python Bootcamp",
+        "mode": "offline",
+        "location": "San Francisco, CA",
+        "startDate": "2024-06-10T08:00:00",
+        "endDate": "2024-06-10T18:00:00",
+        "capacity": 75,
+        "registeredCount": 60
+    },
+    {
+        "id": "evt004",
+        "name": "AI & ML Symposium",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-07-05T10:00:00",
+        "endDate": "2024-07-05T15:00:00",
+        "capacity": 300,
+        "registeredCount": 250
+    },
+    {
+        "id": "evt005",
+        "name": "Data Science Meetup",
+        "mode": "offline",
+        "location": "Chicago, IL",
+        "startDate": "2024-06-20T18:00:00",
+        "endDate": "2024-06-20T20:00:00",
+        "capacity": 100,
+        "registeredCount": 80
+    },
+    {
+        "id": "evt006",
+        "name": "Cloud Computing Workshop",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-06-25T13:00:00",
+        "endDate": "2024-06-25T17:00:00",
+        "capacity": 150,
+        "registeredCount": 120
+    },
+    {
+        "id": "evt007",
+        "name": "Blockchain Seminar",
+        "mode": "offline",
+        "location": "Los Angeles, CA",
+        "startDate": "2024-07-10T09:00:00",
+        "endDate": "2024-07-10T12:00:00",
+        "capacity": 60,
+        "registeredCount": 50
+    },
+    {
+        "id": "evt008",
+        "name": "Cybersecurity Workshop",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-06-30T14:00:00",
+        "endDate": "2024-06-30T18:00:00",
+        "capacity": 120,
+        "registeredCount": 100
+    },
+    {
+        "id": "evt009",
+        "name": "Full Stack Development Course",
+        "mode": "offline",
+        "location": "Boston, MA",
+        "startDate": "2024-06-05T09:00:00",
+        "endDate": "2024-06-05T17:00:00",
+        "capacity": 50,
+        "registeredCount": 40
+    },
+    {
+        "id": "evt010",
+        "name": "UX/UI Design Workshop",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-07-01T10:00:00",
+        "endDate": "2024-07-01T16:00:00",
+        "capacity": 80,
+        "registeredCount": 70
+    },
+    {
+        "id": "evt011",
+        "name": "Big Data Analytics Conference",
+        "mode": "offline",
+        "location": "Houston, TX",
+        "startDate": "2024-06-08T09:00:00",
+        "endDate": "2024-06-08T18:00:00",
+        "capacity": 200,
+        "registeredCount": 190
+    },
+    {
+        "id": "evt012",
+        "name": "Mobile App Development Bootcamp",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-06-18T09:00:00",
+        "endDate": "2024-06-18T17:00:00",
+        "capacity": 100,
+        "registeredCount": 85
+    },
+    {
+        "id": "evt013",
+        "name": "DevOps Training",
+        "mode": "offline",
+        "location": "Seattle, WA",
+        "startDate": "2024-06-22T10:00:00",
+        "endDate": "2024-06-22T16:00:00",
+        "capacity": 70,
+        "registeredCount": 65
+    },
+    {
+        "id": "evt014",
+        "name": "Digital Marketing Workshop",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-07-08T09:00:00",
+        "endDate": "2024-07-08T12:00:00",
+        "capacity": 150,
+        "registeredCount": 140
+    },
+    {
+        "id": "evt015",
+        "name": "IoT Conference",
+        "mode": "offline",
+        "location": "Austin, TX",
+        "startDate": "2024-06-14T09:00:00",
+        "endDate": "2024-06-14T17:00:00",
+        "capacity": 100,
+        "registeredCount": 95
+    },
+    {
+        "id": "evt016",
+        "name": "Machine Learning Bootcamp",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-06-27T08:00:00",
+        "endDate": "2024-06-27T17:00:00",
+        "capacity": 200,
+        "registeredCount": 180
+    },
+    {
+        "id": "evt017",
+        "name": "AI for Beginners",
+        "mode": "offline",
+        "location": "Miami, FL",
+        "startDate": "2024-07-03T10:00:00",
+        "endDate": "2024-07-03T15:00:00",
+        "capacity": 50,
+        "registeredCount": 45
+    },
+    {
+        "id": "evt018",
+        "name": "Advanced Python Programming",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-06-12T13:00:00",
+        "endDate": "2024-06-12T18:00:00",
+        "capacity": 100,
+        "registeredCount": 90
+    },
+    {
+        "id": "evt019",
+        "name": "Web Development Bootcamp",
+        "mode": "offline",
+        "location": "Denver, CO",
+        "startDate": "2024-07-07T09:00:00",
+        "endDate": "2024-07-07T16:00:00",
+        "capacity": 75,
+        "registeredCount": 65
+    },
+    {
+        "id": "evt020",
+        "name": "Digital Transformation Conference",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-06-19T10:00:00",
+        "endDate": "2024-06-19T15:00:00",
+        "capacity": 150,
+        "registeredCount": 130
+    },
+    {
+        "id": "evt021",
+        "name": "VR/AR Development Workshop",
+        "mode": "offline",
+        "location": "Las Vegas, NV",
+        "startDate": "2024-07-02T10:00:00",
+        "endDate": "2024-07-02T17:00:00",
+        "capacity": 60,
+        "registeredCount": 55
+    },
+    {
+        "id": "evt022",
+        "name": "Entrepreneurship Meetup",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-06-23T18:00:00",
+        "endDate": "2024-06-23T20:00:00",
+        "capacity": 100,
+        "registeredCount": 85
+    },
+    {
+        "id": "evt024",
+        "name": "Graphic Design Workshop",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-06-21T14:00:00",
+        "endDate": "2024-06-21T18:00:00",
+        "capacity": 80,
+        "registeredCount": 70
+    },
+    {
+        "id": "evt025",
+        "name": "Content Marketing Strategies",
+        "mode": "offline",
+        "location": "Houston, TX",
+        "startDate": "2024-07-09T09:00:00",
+        "endDate": "2024-07-09T17:00:00",
+        "capacity": 120,
+        "registeredCount": 100
+    },
+    {
+        "id": "evt026",
+        "name": "Networking Event",
+        "mode": "offline",
+        "location": "Chicago, IL",
+        "startDate": "2024-07-05T18:00:00",
+        "endDate": "2024-07-05T21:00:00",
+        "capacity": 150,
+        "registeredCount": 120
+    },
+    {
+        "id": "evt027",
+        "name": "Software Engineering Summit",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-07-18T10:00:00",
+        "endDate": "2024-07-18T16:00:00",
+        "capacity": 200,
+        "registeredCount": 180
+    },
+    {
+        "id": "evt028",
+        "name": "UI Design Masterclass",
+        "mode": "offline",
+        "location": "Seattle, WA",
+        "startDate": "2024-07-12T09:00:00",
+        "endDate": "2024-07-12T17:00:00",
+        "capacity": 50,
+        "registeredCount": 40
+    },
+    {
+        "id": "evt029",
+        "name": "Cloud Security Workshop",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-07-26T13:00:00",
+        "endDate": "2024-07-26T17:00:00",
+        "capacity": 100,
+        "registeredCount": 90
+    },
+    {
+        "id": "evt030",
+        "name": "Product Management Bootcamp",
+        "mode": "offline",
+        "location": "San Francisco, CA",
+        "startDate": "2024-07-20T08:00:00",
+        "endDate": "2024-07-20T18:00:00",
+        "capacity": 75,
+        "registeredCount": 65
+    },
+    {
+        "id": "evt031",
+        "name": "Data Visualization Workshop",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-08-01T10:00:00",
+        "endDate": "2024-08-01T16:00:00",
+        "capacity": 120,
+        "registeredCount": 100
+    },
+    {
+        "id": "evt032",
+        "name": "Artificial Intelligence Conference",
+        "mode": "offline",
+        "location": "Boston, MA",
+        "startDate": "2024-07-28T09:00:00",
+        "endDate": "2024-07-28T17:00:00",
+        "capacity": 200,
+        "registeredCount": 180
+    },
+    {
+        "id": "evt033",
+        "name": "Webinar: Introduction to Cybersecurity",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-08-10T14:00:00",
+        "endDate": "2024-08-10T16:00:00",
+        "capacity": 150,
+        "registeredCount": 130
+    },
+    {
+        "id": "evt034",
+        "name": "Mobile Development Hackathon",
+        "mode": "offline",
+        "location": "New York, NY",
+        "startDate": "2024-07-25T08:00:00",
+        "endDate": "2024-07-26T18:00:00",
+        "capacity": 100,
+        "registeredCount": 85
+    },
+    {
+        "id": "evt035",
+        "name": "Startup Pitch Competition",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-08-15T09:00:00",
+        "endDate": "2024-08-15T12:00:00",
+        "capacity": 50,
+        "registeredCount": 45
+    },
+    {
+        "id": "evt036",
+        "name": "Machine Learning Seminar",
+        "mode": "offline",
+        "location": "Los Angeles, CA",
+        "startDate": "2024-08-05T10:00:00",
+        "endDate": "2024-08-05T15:00:00",
+        "capacity": 80,
+        "registeredCount": 70
+    },
+    {
+        "id": "evt037",
+        "name": "Data Engineering Workshop",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-08-20T13:00:00",
+        "endDate": "2024-08-20T17:00:00",
+        "capacity": 100,
+        "registeredCount": 90
+    },
+    {
+        "id": "evt038",
+        "name": "Product Launch Event",
+        "mode": "offline",
+        "location": "San Francisco, CA",
+        "startDate": "2024-08-10T09:00:00",
+        "endDate": "2024-08-10T12:00:00",
+        "capacity": 150,
+        "registeredCount": 140
+    },
+    {
+        "id": "evt039",
+        "name": "UX Research Workshop",
+        "mode": "online",
+        "location": "Online",
+        "startDate": "2024-08-25T10:00:00",
+        "endDate": "2024-08-25T16:00:00",
+        "capacity": 80,
+        "registeredCount": 70
+    },
+    {
+        "id": "evt040",
+        "name": "Cloud Migration Strategies",
+        "mode": "offline",
+        "location": "Chicago, IL",
+        "startDate": "2024-08-15T09:00:00",
+        "endDate": "2024-08-15T17:00:00",
+        "capacity": 100,
+        "registeredCount": 95
+    }
+]
+    

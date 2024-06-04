@@ -7,7 +7,7 @@ function SignUp() {
   return (
     <Layout>
       <div>
-            <div className='h-screen backdrop-blur-[3px] bg-slate-600/30 w-full flex justify-center items-center'>
+            <div className='h-screen backdrop-blur-[3px] bg-slate-200/100 w-full flex justify-center items-center'>
                 <div className='xl:w-1/3 h-4/6 rounded-3xl backdrop-blur-2xl bg-white/30 py-4'>
                     <div className='h-2/6 w-full flex flex-col justify-end items-center text-2xl font-bold'>
                         
