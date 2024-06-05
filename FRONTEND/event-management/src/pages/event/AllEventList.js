@@ -11,10 +11,18 @@ function AllEventList() {
     }
     // console.log(events);
     const [items,setItems]=useState(events);
+    const [prev,setPrev]=useState("");
 
     const handleClick=(type)=>{
-        const temp=items.filter((data)=>data.mode===type)
-        setItems(temp);
+        console.log(type+" "+prev);
+        if(type==prev){
+            setItems(events);
+            setPrev("");
+        }else{
+            const temp=events.filter((data)=>data.mode===type)
+            setItems(temp);
+            setPrev(type);
+        }
     }
     
   return (
@@ -24,7 +32,8 @@ function AllEventList() {
             <div className='w-4/5 mx-auto h-full flex flex-col gap-4 p-4'>
                 <div className='flex justify-between items-center'>
                     <div className='py-4 flex gap-4'>
-                        <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'>All Events</button>
+                        <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
+                                onClick={()=>setItems(events)}>All Events</button>
                         <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'>Past Events</button>
                         <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'>Upcoming Events</button>
                         <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'

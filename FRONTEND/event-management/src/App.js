@@ -12,7 +12,8 @@ import EventDetails from './pages/event/EventDetails'
 import CollegeCommittees from './pages/committee/CollegeCommittees'
 import CommitteeDetails from './pages/committee/CommitteeDetails'
 import Profile from './pages/profile/Profile'
-
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <MyState>
@@ -30,6 +31,7 @@ function App() {
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/*' element={<NoPage/>}/>
         </Routes>
+        <ToastContainer/>
       </Router>
     </MyState>
   )
