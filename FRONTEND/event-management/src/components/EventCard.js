@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const event1={
     "id": "evt001",
@@ -12,10 +13,15 @@ const event1={
 }
 
 function EventCard({event}) {
+
+    const navigate = useNavigate();
+    const moreDetail=()=>{
+        navigate('/eventdetails',{state:{event}});
+    }
   return (
-    <div className='h-full'>
-        <div className='w-full h-full bg-white flex border rounded-tl-3xl rounded-br-3xl'>
-            <div className='w-1/2 flex flex-col justify-center gap-5'>
+    <div className='h-full flex justify-center'>
+        <div className='xl:w-full sm:w-2/3 h-full bg-white flex sm:flex-col xl:flex-row sm:items-center  border rounded-tl-3xl rounded-br-3xl'>
+            <div className='xl:w-1/2 sm:w-full flex flex-col justify-center gap-5'>
                 <h1 className='font-bold text-3xl text-center px-2'>Speakers for the Day</h1>
                 <div className='flex gap-20 justify-center py-2 items-center'>
                     <div>
@@ -32,15 +38,18 @@ function EventCard({event}) {
                     </div>
                 </div>
             </div>
-            <div className='w-1/2 h-full text-xl p-3 flex flex-col justify-between'>
-                <h1 className='font-bold text-3xl'>{event.name}</h1>
-                <p className='pt-2'>{event.mode}</p>
-                <p className='pt-2'>{event.location}</p>
-                <p className='pt-2'>{event.capacity}</p>
-                <p className='pt-2'>{event.registeredCount}</p>
+            <div className='xl:w-1/2 sm:w-full h-full text-xl p-3 flex flex-col justify-between '>
+                <div className='flex flex-col sm:items-center xl:items-start'>
+                    <h1 className='font-bold text-3xl'>{event.name}</h1>
+                    <p className='pt-2'>{event.mode}</p>
+                    <p className='pt-2'>{event.location}</p>
+                    <p className='pt-2'>{event.capacity}</p>
+                    <p className='pt-2'>{event.registeredCount}</p>
+                </div>
                 <div className='flex gap-4 pt-2'>
                     <button className='bg-indigo-600 text-white rounded-xl h-10 w-1/2 px-5 font-bold text-md hover:bg-white hover:text-blue-600 hover:border hover:border-blue-700'>Register</button>
-                    <button className='bg-indigo-600 text-white rounded-xl h-10 w-1/2 px-5 font-bold text-md hover:bg-white hover:text-blue-600 hover:border hover:border-blue-700'>More Details...</button>
+                    <button className='bg-indigo-600 text-white rounded-xl h-10 w-1/2 px-5 font-bold text-md hover:bg-white hover:text-blue-600 hover:border hover:border-blue-700'
+                            onClick={()=>moreDetail()}>More Details...</button>
                 </div>
             </div>
         </div>

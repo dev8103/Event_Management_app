@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../../components/layout/Layout'
 import { useNavigate } from 'react-router-dom'
 
 function CreateEvent() {
   const navigate=useNavigate();
+  const [details,setDetails]=useState({});
   const alleventpage=()=>{
-    navigate('/allevent')
+    navigate('/allevent',{state:{details}});
   }
+
+  console.log(details);
   return (
     <div>
         <div className='h-full bg-white p-2'>
@@ -14,7 +17,11 @@ function CreateEvent() {
             <h1 className='text-center font-bold text-4xl font-serif'>Create Event</h1>
             <div className='flex flex-col justify-center gap-2'>
               <label htmlFor="name">Event Name:</label>
-              <input type="text" className='h-10 border rounded-md px-3'/>
+              <input 
+                type="text" 
+                className='h-10 border rounded-md px-3'
+                value={details?.name}
+                onChange={(e)=>setDetails({...details,name:e.target.value})}/>
             </div>
             <div className='flex flex-col justify-center gap-2'>
               <label htmlFor="name">Description:</label>
@@ -66,11 +73,13 @@ function CreateEvent() {
             <div className='flex justify-between my-2'>
                <div className='flex flex-col gap-2'>
                 <label htmlFor="cap">Capacity</label>
-                <input type="number" name="cap" id="" placeholder='capacity of attendees' className='h-10 border rounded-md px-3'/>
+                <input type="number" name="cap" id="" placeholder='capacity of attendees' className='h-10 border rounded-md px-3'
+                       onChange={(e)=>setDetails({...details,capacity:e.target.value})}/>
                </div>
                <div className='flex flex-col gap-2'>
                 <label htmlFor="cap">Total Registered</label>
-                <input type="number" name="cap" id="" placeholder='capacity of attendees' className='h-10 border rounded-md px-3'/>
+                <input type="number" name="cap" id="" placeholder='capacity of attendees' className='h-10 border rounded-md px-3'
+                      onChange={(e)=>setDetails({...details,registeredCount:e.target.value})}/>
                </div>
             </div>
             <div className='flex flex-col justify-center gap-2'>

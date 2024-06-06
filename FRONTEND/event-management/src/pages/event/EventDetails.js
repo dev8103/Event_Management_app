@@ -1,6 +1,11 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom';
 
 function EventDetails() {
+    const location = useLocation();
+    const {state} = location;
+    const event = state?.event;
+    // console.log(state?.event);
   return (
     <div className='h-screen bg-blue-50 flex justify-center items-center'>
         <div className='flex justify-center items-center'>
@@ -16,7 +21,7 @@ function EventDetails() {
                         <tbody>
                             <tr>
                                 <td className='border border-slate-400 px-2 font-semibold'>Name</td>
-                                <td className='border border-slate-400 px-2'>Famous Event</td>
+                                <td className='border border-slate-400 px-2'>{event.name}</td>
                             </tr>
                             <tr>
                                 <td className='border border-slate-400 px-2 font-semibold'>Start Date</td>
@@ -32,15 +37,15 @@ function EventDetails() {
                             </tr>
                             <tr>
                                 <td className='border border-slate-400 px-2 font-semibold'>Event Mode</td>
-                                <td className='border border-slate-400 px-2'>online and offline</td>
+                                <td className='border border-slate-400 px-2'>{event.mode}</td>
                             </tr>
                             <tr>
                                 <td className='border border-slate-400 px-2 font-semibold'>Total allowed guests</td>
-                                <td className='border border-slate-400 px-2'>300</td>
+                                <td className='border border-slate-400 px-2'>{event.capacity}</td>
                             </tr>
                             <tr>
                                 <td className='border border-slate-400 px-2 font-semibold'>Total registered</td>
-                                <td className='border border-slate-400 px-2'>150</td>
+                                <td className='border border-slate-400 px-2'>{event.registeredCount}</td>
                             </tr>
                             <tr>
                                 <td className='border border-slate-400 px-2 font-semibold'>Description</td>
