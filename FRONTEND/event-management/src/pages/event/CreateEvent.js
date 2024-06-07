@@ -1,15 +1,24 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Layout from '../../components/layout/Layout'
 import { useNavigate } from 'react-router-dom'
+import MyContext from '../../context/data/MyContext';
 
 function CreateEvent() {
-  const navigate=useNavigate();
-  const [details,setDetails]=useState({});
-  const alleventpage=()=>{
-    navigate('/allevent',{state:{details}});
-  }
+  const context=useContext(MyContext);
+  const {details,setDetails,allEvents,setAllEvents} = context;
+  const navigate = useNavigate();
 
-  console.log(details);
+  const addEvent=(e)=>{
+    e.preventDefault();
+    setAllEvents([...allEvents, details]);
+    console.log("alleve",allEvents);
+    navigate('/allevents');
+    // setTimeout(() => {
+    //   window.location.href = '/allevents';
+    // }, 1000);
+  }
+  
+  console.log("details",details);
   return (
     <div>
         <div className='h-full bg-white p-2'>
@@ -98,7 +107,7 @@ function CreateEvent() {
             <div className='flex flex-col justify-center gap-2 pt-2'>
               <button 
                 className='btn bg-indigo-600 border rounded-md h-10 hover:bg-slate-500 text-white font-semibold'
-                onClick={alleventpage}>Add Event</button>
+                onClick={addEvent}>Add Event</button>
             </div>
           </div>
         </div>

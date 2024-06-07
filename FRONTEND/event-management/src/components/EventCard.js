@@ -13,7 +13,6 @@ const event1={
 }
 
 function EventCard({event}) {
-
     const navigate = useNavigate();
     const moreDetail=()=>{
         navigate('/eventdetails',{state:{event}});

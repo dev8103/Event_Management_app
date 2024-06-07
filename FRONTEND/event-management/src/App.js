@@ -15,6 +15,7 @@ import Profile from './pages/profile/Profile'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 function App() {
+
   return (
     <MyState>
       <Router>
@@ -23,7 +24,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/create' element={<CreateEvent/>}/>
-          <Route path='/allevent' element={<AllEventList/>}/>
+          <Route path='/allevents' element={<AllEventList/>}/>
           <Route path='/delete' element={<DeletePopUp/>}/>
           <Route path='/eventdetails' element={<EventDetails/>}/>
           <Route path='/collegecommittee' element={<CollegeCommittees/>}/>

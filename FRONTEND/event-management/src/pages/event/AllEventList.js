@@ -1,34 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Layout from '../../components/layout/Layout'
 import EventCard from '../../components/EventCard'
 import { useLocation, useNavigate } from 'react-router-dom'
-import events from './events.json'
+import MyContext from '../../context/data/MyContext';
+// import events from './events.json'
 
 function AllEventList() {
+    const context = useContext(MyContext);
+    const {items,handleClick} = context;
+
+    // const location = useLocation();
+    // const {state} = location;
+    // const newEvent = state?.details;
+    // console.log("new",newEvent);
+
     const navigate = useNavigate();
-    const location = useLocation();
-    const {state} = location;
-    const newEvent = state?.details;
-    console.log("new",newEvent);
     const redirectcreate=()=>{
         navigate('/create');
     }
     // console.log(events);
-    const [items,setItems]=useState(events);
-    const [prev,setPrev]=useState("");
-
-    const handleClick=(type)=>{
-        console.log(type+" "+prev);
-        if(type==prev){
-            setItems(events);
-            setPrev("");
-        }else{
-            const temp=events.filter((data)=>data.mode===type)
-            setItems(temp);
-            setPrev(type);
-        }
-    }
-    
+    useEffect(()=>{
+        handleClick("all");
+    },[]);
   return (
 
     <Layout>
@@ -37,7 +30,7 @@ function AllEventList() {
                 <div className='flex justify-between items-center xl:flex-row sm:flex-col'>
                     <div className='py-4 flex gap-4 xl:flex-row sm:flex-col'>
                         <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
-                                onClick={()=>setItems(events)}>All Events</button>
+                                onClick={()=>handleClick("all")}>All Events</button>
                         <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'>Past Events</button>
                         <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'>Upcoming Events</button>
                         <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
@@ -52,7 +45,7 @@ function AllEventList() {
                 </div>
                 <div className='flex flex-col gap-5'>
                     {
-                        items.map((event)=>{
+                        items?.map((event)=>{
                             return(
                                 <EventCard event={event}/>    
                             )
