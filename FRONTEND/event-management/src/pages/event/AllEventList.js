@@ -27,8 +27,8 @@ function AllEventList() {
     <Layout>
         <div className='bg-blue-100 w-full'>
             <div className='w-4/5 mx-auto h-full flex flex-col gap-4 p-4'>
-                <div className='flex justify-between items-center xl:flex-row sm:flex-col'>
-                    <div className='py-4 flex gap-4 xl:flex-row sm:flex-col'>
+                <div className='flex justify-between items-center md:flex-row flex-col'>
+                    <div className='py-4 flex gap-4 md:flex-row flex-col'>
                         <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
                                 onClick={()=>handleClick("all")}>All Events</button>
                         <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'>Past Events</button>
@@ -38,8 +38,8 @@ function AllEventList() {
                         <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
                                 onClick={()=>handleClick("offline")}>Offline Events</button>
                     </div>
-                    <div>
-                        <button className='bg-indigo-600 rounded-full h-10 px-5 font-bold text-md text-white hover:bg-indigo-800 hover:text-white' 
+                    <div className='flex justify-center'>
+                        <button className='bg-indigo-600 w-full rounded-full h-10 px-5 font-bold text-md text-white hover:bg-indigo-800 hover:text-white' 
                                 onClick={redirectcreate}>Add Event</button>
                     </div>
                 </div>

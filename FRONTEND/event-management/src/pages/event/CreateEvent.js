@@ -1,28 +1,42 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Layout from '../../components/layout/Layout'
 import { useNavigate } from 'react-router-dom'
 import MyContext from '../../context/data/MyContext';
+import { toast } from 'react-toastify';
 
 function CreateEvent() {
   const context=useContext(MyContext);
   const {details,setDetails,allEvents,setAllEvents} = context;
   const navigate = useNavigate();
+  const [venue,setVenue]=useState("");
 
   const addEvent=(e)=>{
     e.preventDefault();
-    setAllEvents([...allEvents, details]);
-    console.log("alleve",allEvents);
-    navigate('/allevents');
+    console.log("venue",venue);
+    let f=false;
+    for(let i=0;i<allEvents.length;i++){
+        if(allEvents[i].location==venue){
+          f=true;
+        }
+    }
+    if(f==true){
+      toast.error("This Venue Is Not Available");
+    }else{
+      setAllEvents([...allEvents, details]);
+      console.log("alleve",allEvents);
+      navigate('/allevents');
+    }
     // setTimeout(() => {
     //   window.location.href = '/allevents';
     // }, 1000);
   }
   
   console.log("details",details);
+  
   return (
     <div>
         <div className='h-full bg-white p-2'>
-          <div className='w-1/3 bg-indigo-50 h-full mx-auto p-5 border rounded-xl'>
+          <div className='md:w-1/3 w-full bg-indigo-50 h-full mx-auto p-5 border rounded-xl'>
             <h1 className='text-center font-bold text-4xl font-serif'>Create Event</h1>
             <div className='flex flex-col justify-center gap-2'>
               <label htmlFor="name">Event Name:</label>
@@ -56,7 +70,7 @@ function CreateEvent() {
               </div>
         </div>
             </div>
-            <div className='flex justify-between my-2'>
+            <div className='flex md:flex-row flex-col justify-between my-2'>
                <div className='flex flex-col gap-2'>
                 <label htmlFor="cap">Start Time:</label>
                 <input type="date" name="start" id="" className='h-10 border rounded-md px-3'/>
@@ -73,13 +87,32 @@ function CreateEvent() {
                 <label htmlFor="online" className='pl-3'>Online</label>
                 <input type="url" name="link" id="link" className='h-8 w-full border rounded-md px-3'/>
               </div>
-              <div className='my-2'>
-                <input type="checkbox" name="offline" id="offline" value="Offline"/>
-                <label htmlFor="offline" className='pl-3'>Offline</label>
-                <textarea name="venue" id="venue" className='h-15 w-full border rounded-md p-2'></textarea>
+              <div className='my-2 flex flex-col'>
+                <div>
+                  <input type="checkbox" name="offline" id="offline" value="Offline"/>
+                  <label htmlFor="offline" className='pl-3'>Offline</label>
+                </div>
+                <select name="allclass"   
+                  value={venue} 
+                  onChange={(e)=>{
+                    setVenue(e.target.value);
+                    setDetails({...details,location:e.target.value});
+                  }
+                  } 
+                className='border-1 border-gray-500 p-3 rounded-md outline-none'>
+                  <option value="0" name="allclass" >NONE</option>
+                  <option value="1" name="allclass" >CEP-101</option>
+                  <option value="2" name="allclass" >CEP-102</option>
+                  <option value="3" name="allclass" >CEP-103</option>
+                  <option value="4" name="allclass" >CEP-104</option>
+                  <option value="5" name="allclass" >CEP-105</option>
+                  <option value="6" name="allclass" >CEP-106</option>
+                  <option value="7" name="allclass" >LT-1</option>
+                  <option value="8" name="allclass" >LT-2</option>
+                </select>
               </div>
             </div>
-            <div className='flex justify-between my-2'>
+            <div className='flex md:flex-row flex-col justify-between my-2'>
                <div className='flex flex-col gap-2'>
                 <label htmlFor="cap">Capacity</label>
                 <input type="number" name="cap" id="" placeholder='capacity of attendees' className='h-10 border rounded-md px-3'
