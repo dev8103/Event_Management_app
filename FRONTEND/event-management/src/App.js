@@ -14,6 +14,7 @@ import CommitteeDetails from './pages/committee/CommitteeDetails'
 import Profile from './pages/profile/Profile'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import AdminEventlist from './pages/event/AdminEventlist'
 function App() {
 
   return (
@@ -25,10 +26,11 @@ function App() {
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/create' element={<CreateEvent/>}/>
           <Route path='/allevents' element={<AllEventList/>}/>
-          <Route path='/delete' element={<DeletePopUp/>}/>
+          <Route path='/deletepopup' element={<DeletePopUp/>}/>
           <Route path='/eventdetails' element={<EventDetails/>}/>
           <Route path='/collegecommittee' element={<CollegeCommittees/>}/>
           <Route path='/committeedetail' element={<CommitteeDetails/>}/>
+          <Route path='/admineventlist' element={<AdminEventlist/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/*' element={<NoPage/>}/>
         </Routes>
