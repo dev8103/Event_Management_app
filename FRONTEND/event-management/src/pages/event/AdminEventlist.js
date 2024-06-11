@@ -22,6 +22,9 @@ function AdminEventlist() {
         navigate('/deletepopup',{state:{event}});
     }
 
+    const editEvent=(event)=>{
+        navigate('/editevent',{state:{event}});
+    }
   return (
     <div className='flex justify-center'>
         <div className='p-3'>
@@ -62,7 +65,7 @@ function AdminEventlist() {
                                     </td>
                                     <td className='border border-slate-400 px-2'>event member</td>
                                     <td className='border border-slate-400 px-2'>
-                                        <button>
+                                        <button onClick={()=>editEvent(event)}>
                                             <MdModeEdit/>
                                         </button>
                                     </td>
