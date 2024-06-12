@@ -4,6 +4,7 @@ import { TextField } from '@mui/material'
 import { Player } from '@lottiefiles/react-lottie-player'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Loader from '../../components/Loader';
 
 function SignUp() {
     const [email,setEmail]=useState("");
@@ -51,7 +52,7 @@ function SignUp() {
         }else if (password.length < 8) {
             toast.error("Password length should be more than 8.");
         }else{
-            navigate('/allevent');
+            navigate('/allevents');
         }
     }
   return (

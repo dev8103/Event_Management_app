@@ -16,6 +16,8 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import AdminEventlist from './pages/event/AdminEventlist'
 import EditEvent from './pages/event/EditEvent'
+import Loader from './components/Loader'
+import EventCal from './pages/event/EventCal'
 function App() {
 
   return (
@@ -34,6 +36,8 @@ function App() {
           <Route path='/admineventlist' element={<AdminEventlist/>}/>
           <Route path='/editevent' element={<EditEvent/>}/>
           <Route path='/profile' element={<Profile/>}/>
+          <Route path='/loader' element={<Loader/>}/>
+          <Route path='/eventcal' element={<EventCal/>}/>
           <Route path='/*' element={<NoPage/>}/>
         </Routes>
         <ToastContainer/>

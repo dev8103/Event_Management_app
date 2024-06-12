@@ -25,9 +25,10 @@ function MyState(props) {
   
   const [allEvents,setAllEvents]=useState([]);
   const [items,setItems]=useState(allEvents);
-
+  // const [loading,setLoading]=useState(false);
 
   const handleClick=(type)=>{
+    // setLoading(true);
     console.log(type);   
     if(type=="all"){
       setItems(allEvents);
@@ -36,6 +37,7 @@ function MyState(props) {
       const temp=allEvents?.filter((data)=>data.mode===type)
       setItems(temp);
     }
+    // setLoading(false);
   }
 
   return (
