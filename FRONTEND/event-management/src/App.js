@@ -1,6 +1,6 @@
 import React from 'react'
 import MyState from './context/data/MyState'
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import Home from './pages/home/Home'
 import Login from './pages/registration/Login'
 import SignUp from './pages/registration/SignUp'
@@ -33,8 +33,16 @@ function App() {
           <Route path='/eventdetails' element={<EventDetails/>}/>
           <Route path='/collegecommittee' element={<CollegeCommittees/>}/>
           <Route path='/committeedetail' element={<CommitteeDetails/>}/>
-          <Route path='/admineventlist' element={<AdminEventlist/>}/>
-          <Route path='/editevent' element={<EditEvent/>}/>
+          <Route path='/admineventlist' element={
+            <ProtectedRouteForAdmin>
+              <AdminEventlist/>
+            </ProtectedRouteForAdmin>
+          }/>
+          <Route path='/editevent' element={
+            <ProtectedRouteForAdmin>
+              <EditEvent/>
+            </ProtectedRouteForAdmin>
+          }/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/loader' element={<Loader/>}/>
           <Route path='/eventcal' element={<EventCal/>}/>
@@ -47,3 +55,23 @@ function App() {
 }
 
 export default App
+
+// Protected Route For User
+export const ProtectedRouteForUser = ({children}) =>{
+    const user = localStorage.getItem('user');
+    if(user){
+        return children
+    }else{
+        return <Navigate to={'/login'}/>
+    }
+}
+
+// Protected Route For Admin
+export const ProtectedRouteForAdmin = ({children}) =>{
+    const admin = JSON.parse(localStorage.getItem('user')); // For the object we use JSON.parse
+    if(admin.email === "daiict@gmail.com"){
+      return children
+    }else{
+      return <Navigate to={'/login'}/>
+    }
+}

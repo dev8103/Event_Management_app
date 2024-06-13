@@ -9,7 +9,7 @@ import Loader from '../../components/Loader';
 function SignUp() {
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
-
+    const [loading,setLoading]=useState(false);
     const navigate = useNavigate();
 
     const validate=()=>{
@@ -34,6 +34,7 @@ function SignUp() {
         e.preventDefault();
         // console.log(email);
         // console.log(password);
+        setLoading(true);
         var lowerCase = /[a-z]/g;
         var upperCase = /[A-Z]/g;
         var numbers = /[0-9]/g;
@@ -54,6 +55,7 @@ function SignUp() {
         }else{
             navigate('/allevents');
         }
+        setLoading(false);
     }
   return (
     <Layout>
@@ -91,6 +93,7 @@ function SignUp() {
                         
                     </div>
                     <div className='h-1/4 text-md w-5/6 mx-auto text-white flex flex-col gap-4'>
+                    {loading && <Loader className="z-20"/>}
                         <button 
                             className='btn bg-indigo-600 border rounded-md h-12 hover:bg-slate-500 text-white font-semibold'
                             onClick={signUp}

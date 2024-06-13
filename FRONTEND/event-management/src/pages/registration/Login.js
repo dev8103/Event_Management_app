@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../../components/layout/Layout'
 import { TextField } from '@mui/material'
 import { Player } from '@lottiefiles/react-lottie-player'
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function Login() {
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+    const navigate = useNavigate();
+
+    const login=()=>{
+        const user={
+            email:email,
+            password:password
+        }
+        localStorage.setItem('user',JSON?.stringify(user));
+        navigate('/');
+    }
+
   return (
     <Layout>
       <div>
@@ -26,23 +40,23 @@ function Login() {
                             label="Email Address"
                             placeholder='Enter your email' 
                             // className='outline-none border-4 border-b-black border-none rounded-lg py-2 pl-2' 
-                            // value={email}
-                            // onChange={(e)=>setEmail(e.target.value)}
+                            value={email}
+                            onChange={(e)=>setEmail(e.target.value)}
                             />
                         <TextField 
                             type="password" 
                             label="Password"
                             placeholder='Enter your password'
                             // className='outline-none border border-b-black rounded-lg py-2 pl-2'
-                            // value={password}
-                            // onChange={(e)=>setPassword(e.target.value)}
+                            value={password}
+                            onChange={(e)=>setPassword(e.target.value)}
                             />
                         
                     </div>
                     <div className='h-1/4 text-md w-5/6 mx-auto text-white flex flex-col gap-4'>
                         <button 
                             className='btn bg-indigo-600 border rounded-md h-12 hover:bg-slate-500 text-white font-semibold'
-                            // onClick={login}
+                            onClick={login}
                             >LOG IN</button>
                         <a href="/signup">
                         <button 

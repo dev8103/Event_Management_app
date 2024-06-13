@@ -9,6 +9,9 @@ function AllEventList() {
     const context = useContext(MyContext);
     const {items,handleClick} = context;
 
+    const user = JSON.parse(localStorage?.getItem('user'));
+    console.log("localstorage user",user);
+
     // const location = useLocation();
     // const {state} = location;
     // const newEvent = state?.details;
@@ -38,10 +41,14 @@ function AllEventList() {
                         <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
                                 onClick={()=>handleClick("offline")}>Offline Events</button>
                     </div>
-                    <div className='flex justify-center'>
-                        <button className='bg-indigo-600 w-full rounded-full h-10 px-5 font-bold text-md text-white hover:bg-indigo-800 hover:text-white' 
-                                onClick={redirectcreate}>Add Event</button>
-                    </div>
+                    {
+                        user.email === "daiict@gmail.com" ? 
+                        <div className='flex justify-center'>
+                            <button className='bg-indigo-600 w-full rounded-full h-10 px-5 font-bold text-md text-white hover:bg-indigo-800 hover:text-white' 
+                                    onClick={redirectcreate}>Add Event</button>
+                        </div>
+                        :""
+                    }
                 </div>
                 <div className='flex flex-col gap-5'>
                     {

@@ -8,6 +8,7 @@ function Navbar() {
   const toggleNavbar=()=>{
     setIsOpen(!isOpen);
   }
+  const user = JSON.parse(localStorage.getItem('user'));
   return (
     <div>
       <div className='bg-indigo-600 text-2xl font-bold text-white shadow-xl sticky top-0 z-20 mx-auto flex w-full items-center justify-between border-gray-800 p-8'>
@@ -17,7 +18,9 @@ function Navbar() {
           <div className='hidden md:flex'>
             <ul className='flex gap-5 justify-between'>
               <li><a href="/">Home</a></li>
-              <li><a href="/allevents">Eventlist</a></li>
+              <li>
+                <a href={user.email === "daiict@gmail.com" ? '/admineventlist' : '/allevents'}>Eventlist</a>
+              </li>
               <li><a href='/signup'>Sign Up</a></li>
               <li><a href="">Log Out</a></li>
               {/* <li>
