@@ -58,7 +58,7 @@ export default App
 
 // Protected Route For User
 export const ProtectedRouteForUser = ({children}) =>{
-    const user = localStorage.getItem('user');
+    const user = localStorage?.getItem('user');
     if(user){
         return children
     }else{
@@ -68,8 +68,8 @@ export const ProtectedRouteForUser = ({children}) =>{
 
 // Protected Route For Admin
 export const ProtectedRouteForAdmin = ({children}) =>{
-    const admin = JSON.parse(localStorage.getItem('user')); // For the object we use JSON.parse
-    if(admin.email === "daiict@gmail.com"){
+    const admin = JSON.parse(localStorage?.getItem('user')); // For the object we use JSON.parse
+    if(admin?.email === "daiict@gmail.com"){
       return children
     }else{
       return <Navigate to={'/login'}/>
