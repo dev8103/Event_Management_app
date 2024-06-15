@@ -18,6 +18,9 @@ import AdminEventlist from './pages/event/AdminEventlist'
 import EditEvent from './pages/event/EditEvent'
 import Loader from './components/Loader'
 import EventCal from './pages/event/EventCal'
+import MobileAuth from './pages/registration/MobileAuth'
+import CodeVerification from './pages/registration/CodeVerification'
+import SuccesMessage from './pages/registration/SuccesMessage'
 function App() {
 
   return (
@@ -46,6 +49,9 @@ function App() {
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/loader' element={<Loader/>}/>
           <Route path='/eventcal' element={<EventCal/>}/>
+          <Route path='/mobileauth' element={<MobileAuth/>}/>
+          <Route path='/codeverification' element={<CodeVerification/>}/>
+          <Route path='/successmessage' element={<SuccesMessage/>}/>
           <Route path='/*' element={<NoPage/>}/>
         </Routes>
         <ToastContainer/>
