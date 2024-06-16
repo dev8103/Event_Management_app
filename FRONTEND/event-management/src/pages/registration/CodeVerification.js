@@ -1,8 +1,20 @@
 import { Player } from '@lottiefiles/react-lottie-player'
 import { TextField } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 function CodeVerification() {
+  const [otp,setOtp]=useState("");
+  const navigate=useNavigate();
+  const confirmOtp=()=>{
+        if(otp=="1234"){
+            navigate('/successmessage');
+        }else{
+            toast.error("Your OTP is invalid");
+        }
+  }
+
   return (
     <div>
          <div className='h-screen w-full bg-cyan-100 flex justify-center items-center px-4'>
@@ -23,11 +35,19 @@ function CodeVerification() {
                     id="outlined-controlled"
                     label="One Time Password"
                     placeholder='Enter OTP'   
+                    value={otp}
+                    onChange={(e)=>setOtp(e.target.value)}
                 />
+                <div>
+                    <p>
+                        Don't Receive the OTP?
+                        <span><a href="" className='text-cyan-900 font-bold'> RESEND OTP</a></span>
+                    </p>
+                </div>
                 <button 
                     className='btn bg-cyan-700 border rounded-md h-12 hover:bg-blue-900 text-white font-semibold'
-                    // onClick={login}
-                >VERIFY</button>
+                    onClick={confirmOtp}
+                >CONFIRM</button>
             </div>
         </div>
     </div>

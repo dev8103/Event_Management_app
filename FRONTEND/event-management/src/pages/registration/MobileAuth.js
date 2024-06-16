@@ -1,8 +1,14 @@
 import { Player } from '@lottiefiles/react-lottie-player'
 import { TextField } from '@mui/material'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function MobileAuth() {
+
+  const navigate=useNavigate();
+  const verify=()=>{
+        navigate('/codeverification');
+  }
   return (
     <div>
         <div className='h-screen w-full bg-cyan-100 flex justify-center items-center'>
@@ -22,11 +28,12 @@ function MobileAuth() {
                     type="text" 
                     id="outlined-controlled"
                     label="Phone Number"
-                    placeholder='Enter your phone number'   
+                    placeholder='Enter your phone number'
+
                 />
                 <button 
                     className='btn bg-cyan-700 border rounded-md h-12 hover:bg-blue-900 text-white font-semibold'
-                    // onClick={login}
+                    onClick={verify}
                 >VERIFY</button>
             </div>
         </div>

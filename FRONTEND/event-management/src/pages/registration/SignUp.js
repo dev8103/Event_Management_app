@@ -53,7 +53,7 @@ function SignUp() {
         }else if (password.length < 8) {
             toast.error("Password length should be more than 8.");
         }else{
-            navigate('/allevents');
+            navigate('/mobileauth');
         }
         setLoading(false);
     }

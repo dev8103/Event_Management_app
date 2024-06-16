@@ -1,8 +1,14 @@
 import { Player } from '@lottiefiles/react-lottie-player'
 import { TextField } from '@mui/material'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function SuccesMessage() {
+
+    const navigate=useNavigate();
+    const success=()=>{
+        navigate('/login');
+    }
   return (
     <div>
          <div className='h-screen w-full bg-cyan-100 flex justify-center items-center'>
@@ -20,7 +26,7 @@ function SuccesMessage() {
                 </div>
                 <button 
                     className='btn bg-cyan-700 border rounded-md h-12 hover:bg-blue-900 text-white font-semibold'
-                    // onClick={login}
+                    onClick={success}
                 >Continue</button>
             </div>
         </div>
