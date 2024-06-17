@@ -24,7 +24,10 @@ function Navbar() {
             <ul className='flex gap-5 justify-between'>
               <li><a href="/">Home</a></li>
               <li>
-                <a href={user?.email === "daiict@gmail.com" ? '/admineventlist' : '/allevents'}>Eventlist</a>
+                <a 
+                  href={user?.email === "daiict@gmail.com" ? '/admineventlist' : '/allevents'}
+                  // href="/allevents"
+                >Eventlist</a>
               </li>
               <li><a href='/signup'>Sign Up</a></li>
               <li><a href="" onClick={logout}>Log Out</a></li>

@@ -3,6 +3,9 @@ import Layout from '../../components/layout/Layout'
 import { useNavigate } from 'react-router-dom'
 import MyContext from '../../context/data/MyContext';
 import { toast } from 'react-toastify';
+import DatePicker from 'react-datetime';
+import Moment from 'react-moment';
+import moment from 'moment';
 
 function CreateEvent() {
   const context=useContext(MyContext);
@@ -32,6 +35,18 @@ function CreateEvent() {
   }
   
   console.log("details",details);
+
+  const today = moment();
+    const currentDate = moment().format("DD-MM-YYYY");
+    const [selectedDate, setSelectedDate] = useState(currentDate);
+
+    const disFutureDate = (current) => {
+        return current.isAfter(today);
+    };
+    const handleDateChange = (date) => {
+        const formattedDate = moment(date).format("DD-MM-YYYY");
+        setSelectedDate(formattedDate);
+    };
   
   return (
     <div>
@@ -70,10 +85,19 @@ function CreateEvent() {
               </div>
         </div>
             </div>
-            <div className='flex md:flex-row flex-col justify-between my-2'>
+            <div className='flex flex-col  justify-between my-2'>
                <div className='flex flex-col gap-2'>
                 <label htmlFor="cap">Start Time:</label>
-                <input type="date" name="start" id="" className='h-10 border rounded-md px-3'/>
+                <DatePicker
+                    dateFormat="DD-MM-YYYY"
+                    timeFormat={false}
+                    isValidDate={disFutureDate}
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    inputProps={{ readOnly: true }}
+                    fullWidth
+                />
+                <input type="datetime-local" name="start" id="" className='h-10 border rounded-md px-3'/>
                </div>
                <div className='flex flex-col gap-2'>
                 <label htmlFor="cap">End Time:</label>
@@ -112,7 +136,7 @@ function CreateEvent() {
                 </select>
               </div>
             </div>
-            <div className='flex md:flex-row flex-col justify-between my-2'>
+            <div className='flex flex-col justify-between my-2'>
                <div className='flex flex-col gap-2'>
                 <label htmlFor="cap">Capacity</label>
                 <input type="number" name="cap" id="" placeholder='capacity of attendees' className='h-10 border rounded-md px-3'

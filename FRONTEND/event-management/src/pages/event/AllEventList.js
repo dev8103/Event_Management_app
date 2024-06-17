@@ -27,8 +27,7 @@ function AllEventList() {
     // console.log(events);
     useEffect(()=>{
         handleClick("all");
-        getUser();
-    },[]);
+    },[getUser()]);
   return (
 
     <Layout>
@@ -46,6 +45,7 @@ function AllEventList() {
                                 onClick={()=>handleClick("offline")}>Offline Events</button>
                     </div>
                     {
+                        
                         user?.email === "daiict@gmail.com" ? 
                         <div className='flex justify-center'>
                             <button className='bg-indigo-600 w-full rounded-full h-10 px-5 font-bold text-md text-white hover:bg-indigo-800 hover:text-white' 
