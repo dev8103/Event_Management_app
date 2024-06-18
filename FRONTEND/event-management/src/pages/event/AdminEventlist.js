@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import events from './events.json'
 import { MdDelete, MdModeEdit } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom';
 import DeletePopUp from '../../components/popup/DeletePopUp';
+import MyContext from '../../context/data/MyContext';
 const event1={
     "id": "evt001",
     "name": "ReactJS Workshop",
@@ -15,6 +16,9 @@ const event1={
 }
 
 function AdminEventlist() {
+    const context = useContext(MyContext);
+    const {allEvents,setAllEvents,details,setdetails} = context;
+
     // const [del,setDel] = useState(false);
     const navigate = useNavigate();
     const deleteEvent=(event)=>{
@@ -25,6 +29,8 @@ function AdminEventlist() {
     const editEvent=(event)=>{
         navigate('/editevent',{state:{event}});
     }
+
+
   return (
     <div className='flex justify-center'>
         <div className='p-3'>
@@ -48,7 +54,7 @@ function AdminEventlist() {
                 </thead>
                 <tbody >
                     {
-                        events?.map((event,idx)=>{
+                        allEvents?.map((event,idx)=>{
                             return(
                                 <tr key={idx} className='bg-blue-100'>
                                     <td className='border border-slate-400 px-2'>{event.name}</td>
