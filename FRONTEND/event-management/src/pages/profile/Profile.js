@@ -1,8 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import { getRequestWithToken } from '../../services/Api';
+import Loader from '../../components/Loader';
 
 function Profile() {
+  const [userData, setUserData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(()=>{
+    const fun = async () => {
+
+      const res = await getRequestWithToken("student/profile");
+      
+      
+      if(res.status == 200){
+        console.log(res.data)
+        setUserData(res.data);
+        setIsLoading(false);
+      }
+    }
+    fun()
+  }, [])
+
   return (
+    <>
+    {
+
+    isLoading ? 
+      <Loader />
+    :
     <div>
        <div className='h-full gap-2'>
             <div className='xl:flex h-full xl:w-3/5 mx-auto p-3'>
@@ -98,6 +124,8 @@ function Profile() {
             </div>
         </div>
     </div>
+  }
+  </>
   )
 }
 
