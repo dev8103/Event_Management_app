@@ -1,17 +1,21 @@
 // built in modules
 const express = require("express");
+const cors = require('cors');
 const dotenv = require("dotenv").config();
 
-// custom modules
-const connectDB = require("./config/dbConnection");
-
-
 // database connection
+const connectDB = require("./config/dbConnection");
 connectDB();
 
 // variables
 const app = express();
 const port = process.env.PORT || 5000;
+
+let corsOptions = {
+    origin : "*",
+}
+
+app.use(cors(corsOptions));
 
 
 // middleware
