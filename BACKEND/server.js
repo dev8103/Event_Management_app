@@ -41,6 +41,7 @@ const signupStudent = require("./controllers/students/signupStudent");
 const loginStudent = require("./controllers/students/loginStudent");
 const getStudent = require("./controllers/students/getStudent");
 const verifyOtp = require('./controllers/students/verifyOtp');
+const verifyEmail = require('./controllers/students/verifyEmail');
 
 
 // mailer
@@ -70,6 +71,8 @@ app.post("/student/signup",signupStudent);
 app.post("/student/login",loginStudent);
 app.get("/student/get",getStudent);
 app.post('/student/verifyotp',verifyOtp);
+app.post('/student/verifyemail',verifyEmail);
+
 
 // app.get("/sendmail",sendMail);
 
