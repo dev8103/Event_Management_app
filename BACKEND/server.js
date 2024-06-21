@@ -32,14 +32,14 @@ const deleteEvent = require("./controllers/events/deleteEvent");
 // clubcommittee
 const getCC = require("./controllers/ClubCommittee/getCC");
 const getCCbyid = require("./controllers/ClubCommittee/getCCbyid");
-const createCC = require("./controllers/ClubCommittee/createCC");
-const updateCC = require("./controllers/ClubCommittee/updateCC");
-const deleteCC = require("./controllers/ClubCommittee/deleteCC");
+const createCC = require("./controllers/sbg/createCC");
+const updateCC = require("./controllers/sbg/updateCC");
+const deleteCC = require("./controllers/sbg/deleteCC");
 const loginCC = require("./controllers/ClubCommittee/loginCC");
 // student
 const signupStudent = require("./controllers/students/signupStudent");
 const loginStudent = require("./controllers/students/loginStudent");
-const getStudent = require("./controllers/students/getStudent");
+const profileStudent = require("./controllers/students/profileStudent")
 const verifyOtp = require('./controllers/students/verifyOtp');
 const verifyEmail = require('./controllers/students/verifyEmail');
 
@@ -69,7 +69,7 @@ app.post("/cc/login",loginCC);
 // student
 app.post("/student/signup",signupStudent);
 app.post("/student/login",loginStudent);
-app.get("/student/get",getStudent);
+app.get("/student/profile", auth, profileStudent);
 app.post('/student/verifyotp',verifyOtp);
 app.post('/student/verifyemail',verifyEmail);
 

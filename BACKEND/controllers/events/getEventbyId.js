@@ -2,6 +2,7 @@ const Event = require("../../models/eventModel");
 
 const getEventbyId =  (async (req,res)=>{
     const curEvent = await Event.findById(req.params.id);
+    console.log(curEvent);
     try{
         if(!curEvent){
             throw new Error("Event not Found.");    

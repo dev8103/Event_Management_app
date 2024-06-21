@@ -66,6 +66,7 @@ const loginStudent = async (req,res)=>{
             res.status(401);
             throw new Error("Please enter valid password.");
         }
+        
         const accessToken = jwt.sign(
             {
                 user:{
