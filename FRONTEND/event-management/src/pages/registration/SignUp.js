@@ -5,11 +5,23 @@ import { Player } from '@lottiefiles/react-lottie-player'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loader from '../../components/Loader';
+import { postRequest } from '../../services/Api';
 
 function SignUp() {
+    const [name,setName]=useState("");
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
+    const [username,setUsername]=useState("");
+    const [phone,setPhone]=useState("");
+    const [confirmPass,setConfirmPass]=useState("");
     const [loading,setLoading]=useState(false);
+    const userData={
+        name:name,
+        username:username,
+        email:email,
+        phoneNumber:phone,
+        password:password
+    }
     const navigate = useNavigate();
 
     const validate=()=>{
@@ -30,7 +42,7 @@ function SignUp() {
         return false;
     }
 
-    const signUp=(e)=>{
+    const signUp=async (e)=>{
         e.preventDefault();
         // console.log(email);
         // console.log(password);
@@ -53,6 +65,9 @@ function SignUp() {
         }else if (password.length < 8) {
             toast.error("Password length should be more than 8.");
         }else{
+            console.log(userData);
+            const res = await postRequest("student/signup",userData);
+            console.log(res?.data);
             navigate('/mobileauth');
         }
         setLoading(false);
@@ -60,8 +75,8 @@ function SignUp() {
   return (
     <Layout>
       <div>
-            <div className='px-4 h-screen backdrop-blur-[3px] bg-slate-200/100 w-full flex justify-center items-center'>
-                <div className='md:w-1/3 h-4/6 w-full rounded-3xl backdrop-blur-2xl bg-white/30 py-4'>
+            <div className='p-4 h-full backdrop-blur-[3px] bg-slate-200/100 w-full flex justify-center items-center'>
+                <div className='md:w-1/3 h-full w-full rounded-3xl backdrop-blur-2xl bg-white/30 py-4'>
                     <div className='h-2/6 w-full flex flex-col justify-end items-center text-2xl font-bold'>
                         
                           <Player
@@ -72,7 +87,25 @@ function SignUp() {
                         
                         <div>SIGN UP</div>
                     </div>
-                    <div className='h-2/5 flex flex-col gap-4 w-5/6 mx-auto justify-center'>
+                    <div className='h-full flex flex-col gap-4 w-5/6 mx-auto justify-center'>
+                        <TextField 
+                            type="text" 
+                            id="outlined-controlled"
+                            label="Full name"
+                            placeholder='Enter your Full name' 
+                            // className='outline-none border-4 border-b-black border-none rounded-lg py-2 pl-2' 
+                            value={name}
+                            onChange={(e)=>setName(e.target.value)}
+                            />
+                        <TextField 
+                            type="text" 
+                            id="outlined-controlled"
+                            label="Username"
+                            placeholder='Enter your username' 
+                            // className='outline-none border-4 border-b-black border-none rounded-lg py-2 pl-2' 
+                            value={username}
+                            onChange={(e)=>setUsername(e.target.value)}
+                            />
                         <TextField 
                             type="email" 
                             id="outlined-controlled"
@@ -83,6 +116,15 @@ function SignUp() {
                             onChange={(e)=>setEmail(e.target.value)}
                             />
                         <TextField 
+                            type="text" 
+                            id="outlined-controlled"
+                            label="Phone Number"
+                            placeholder='Enter your phone number' 
+                            // className='outline-none border-4 border-b-black border-none rounded-lg py-2 pl-2' 
+                            value={phone}
+                            onChange={(e)=>setPhone(e.target.value)}
+                            />
+                        <TextField 
                             type="password" 
                             label="Password"
                             placeholder='Enter your password'
@@ -90,9 +132,16 @@ function SignUp() {
                             value={password}
                             onChange={(e)=>setPassword(e.target.value)}
                             />
-                        
+                        {/* <TextField 
+                            type="password" 
+                            label="Confirm Password"
+                            placeholder='Enter your Confirm Password'
+                            // className='outline-none border border-b-black rounded-lg py-2 pl-2'
+                            value={confirmPass}
+                            onChange={(e)=>setConfirmPass(e.target.value)}
+                            /> */}
                     </div>
-                    <div className='h-1/4 text-md w-5/6 mx-auto text-white flex flex-col gap-4'>
+                    <div className='h-1/4 text-md pt-4 w-5/6 mx-auto text-white flex flex-col gap-4'>
                     {loading && <Loader className="z-20"/>}
                         <button 
                             className='btn bg-indigo-600 border rounded-md h-12 hover:bg-slate-500 text-white font-semibold'

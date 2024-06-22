@@ -1,14 +1,23 @@
 import { Player } from '@lottiefiles/react-lottie-player'
-import { TextField } from '@mui/material'
-import React from 'react'
+import { TextField, useScrollTrigger } from '@mui/material'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { postRequest } from '../../services/Api';
 
 function MobileAuth() {
-
-  const navigate=useNavigate();
-  const verify=()=>{
-        navigate('/codeverification');
+  const [email,setEmail]=useState("");
+  const Data={
+        email:email
   }
+  const navigate=useNavigate();
+  const verify=async()=>{
+        const res = await postRequest('student/verifyemail',Data);
+        console.log(res.data.message);
+        if(res.status==200){
+            navigate('/codeverification',{state:{email}});
+        }
+  }
+
   return (
     <div>
         <div className='h-screen w-full bg-cyan-100 flex justify-center items-center'>
@@ -21,15 +30,15 @@ function MobileAuth() {
                     autoplay/>
                 </div>
                 <div>
-                    <h1 className='text-2xl font-bold'>Enter Your Mobile Number</h1>
+                    <h1 className='text-2xl font-bold'>Enter Your Email Address</h1>
                     <p>We will send you confirmation code</p>
                 </div>
                 <TextField 
                     type="text" 
                     id="outlined-controlled"
-                    label="Phone Number"
-                    placeholder='Enter your phone number'
-
+                    label="Email Address"
+                    placeholder='Enter your email address'
+                    onChange={(e)=>setEmail(e.target.value)}
                 />
                 <button 
                     className='btn bg-cyan-700 border rounded-md h-12 hover:bg-blue-900 text-white font-semibold'

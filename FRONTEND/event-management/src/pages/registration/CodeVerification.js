@@ -1,14 +1,25 @@
 import { Player } from '@lottiefiles/react-lottie-player'
 import { TextField } from '@mui/material'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
+import { postRequest } from '../../services/Api';
 
 function CodeVerification() {
   const [otp,setOtp]=useState("");
+  const location = useLocation();
+  const {state} = location;
+  const email = state?.email;
+  const data={
+      email:email,
+      otp:otp
+  }
   const navigate=useNavigate();
-  const confirmOtp=()=>{
-        if(otp=="1234"){
+  const confirmOtp=async()=>{
+        console.log(data);
+        const res = await postRequest('student/verifyotp',data);
+        console.log(res);
+        if(res.status==200){
             navigate('/successmessage');
         }else{
             toast.error("Your OTP is invalid");

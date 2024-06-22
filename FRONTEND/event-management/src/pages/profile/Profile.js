@@ -4,9 +4,28 @@ import { getRequestWithToken } from '../../services/Api';
 import Loader from '../../components/Loader';
 
 function Profile() {
+  const [name,setName]=useState("");
+  const [email,setEmail]=useState("");
+  const [username,setUsername]=useState("");
+  const [phone,setPhone]=useState("");
+  const [state,setState]=useState("");
+  const [gender,setGender]=useState("");
+  // const [loading,setLoading]=useState(false);
+  const updateUserData={
+      name:name||"",
+      username:username||"",
+      email:email||"",
+      phone:phone||"",
+      gender:gender||"",
+      state:state||""
+  }
+  
   const [userData, setUserData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
+  const updateUser=()=>{
+      console.log(updateUserData);
+  }
   useEffect(()=>{
     const fun = async () => {
 
@@ -14,7 +33,7 @@ function Profile() {
       
       
       if(res.status == 200){
-        console.log(res.data)
+        console.log(res.data);
         setUserData(res.data);
         setIsLoading(false);
       }
@@ -43,13 +62,13 @@ function Profile() {
                           {/* {formData?.gender=="female"?"Miss.":"Mr."}{formData?.firstname} */}
                         </h1>
                         <h2>
-                          {/* {formData?.username} */}
+                          {username}
                         </h2>
                         <h3>
-                          {/* {formData?.email} */}
+                          {email}
                         </h3>
                         <h3>
-                          {/* {formData?.phone} */}
+                          {phone}
                         </h3>
                     </div>
                 </div>
@@ -57,18 +76,17 @@ function Profile() {
                     <h1 className='text-2xl font-bold'>Profile</h1>
                     <form action="" className='flex flex-col gap-3 my-2 relative outline-none  border-none'>
                         <input 
+                        value={userData?.name}
+                        onChange={(e)=>setName(e.target.value)}
                         // value={formData?.firstname} onChange={(e)=>setFormData({...formData,firstname:e.target.value})} 
                         placeholder="firstname" type="text" className='rounded-lg py-3'/>
                         <input 
-                        // value={formData?.middlename} onChange={(e)=>setFormData({...formData,middlename:e.target.value})} 
-                        placeholder="middlename" type="text" className='rounded-lg py-3'/>
-                        <input 
-                        // value={formData?.lastname} onChange={(e)=>setFormData({...formData,lastname:e.target.value})} 
-                        placeholder="lastname" type="text" className='rounded-lg py-3'/>
-                        <input 
+                        value={userData?.username}
+                        onChange={(e)=>setUsername(e.target.value)}
                         // value={formData?.username} onChange={(e)=>setFormData({...formData,username:e.target.value})} 
                         placeholder="username" type="text" className='rounded-lg py-3'/>
                         <input 
+                        value={userData?.email}
                         // value={formData?.email} onChange={(e)=>setFormData({...formData,email:e.target.value})} 
                         placeholder="email" type="email" className='rounded-lg py-3'/>
                         <FormLabel id="demo-row-radio-buttons-group-label"><p className='font-bold text-black'>Gender</p></FormLabel>
@@ -76,6 +94,9 @@ function Profile() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
+                                value={userData?.gender}
+                                onChange={(e)=>setGender(e.target.value)}
+                                // value={gender}
                                 // value={formData?.gender}   
                                 // onChange={(e)=>setFormData({...formData,gender:e.target.value})}
                             >
@@ -94,10 +115,14 @@ function Profile() {
                         // value={formData?.dob} onChange={(e)=>setFormData({...formData,dob:e.target.value})}  
                         className='border-1 border-gray-300 py-1 px-2 rounded-sm outline-none'/>
                         <input 
+                        value={userData?.phone}
+                        onChange={(e)=>setPhone(e.target.value)}
                         // value={formData?.phone} onChange={(e)=>setFormData({...formData,phone:e.target.value})} 
                         label="phone number" type="text" placeholder='phone number' className='rounded-lg py-3'/>
                         <label htmlFor="state" className='font-bold'>State</label>
                         <select name="state" 
+                        value={userData?.state}
+                        onChange={(e)=>setState(e.target.value)}
                         // value={formData?.state} onChange={(e)=>setFormData({...formData,state:e.target.value})} 
                         className='border-1 border-gray-500 p-3 rounded-md outline-none'>
                             <option value="Gujarat" name="state">Gujarat</option>
