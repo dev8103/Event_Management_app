@@ -44,6 +44,7 @@ const loginCC = require("./controllers/ClubCommittee/loginCC");
 const signupStudent = require("./controllers/students/signupStudent");
 const loginStudent = require("./controllers/students/loginStudent");
 const profileStudent = require("./controllers/students/profileStudent")
+const updateprofileStudent = require("./controllers/students/updateProfileStudent");
 const verifyOtp = require('./controllers/students/verifyOtp');
 const verifyEmail = require('./controllers/students/verifyEmail');
 
@@ -61,22 +62,22 @@ app.post("/sbg/login",loginSbg);
 app.get("/events/get", getEvents);
 app.get("/events/getbyid/:id", getEventbyId);
 app.post("/events/create", auth, createEvent);
-app.put("/events/update/:id", auth, updateEvent);
-app.delete("/events/delete/:id", auth, deleteEvent);
+app.post("/events/update/:id", auth, updateEvent);
+app.get("/events/delete/:id", auth, deleteEvent);
 // ClubCommittee
 app.get("/cc/get", auth, getCC);
 app.get("/cc/getbyid/:id", auth, getCCbyid);
 app.post("/cc/create", auth, createCC);
-app.put("/cc/update/:id", auth, updateCC);
-app.delete("/cc/delete/:id", auth, deleteCC);
+app.post("/cc/update/:id", auth, updateCC);
+app.get("/cc/delete/:id", auth, deleteCC);
 app.post("/cc/login",loginCC);
 // student
 app.post("/student/signup",signupStudent);
 app.post("/student/login",loginStudent);
 app.get("/student/profile", auth, profileStudent);
+app.post("/student/updateprofile", auth, updateprofileStudent);
 app.post('/student/verifyotp',verifyOtp);
 app.post('/student/verifyemail',verifyEmail);
-
 
 // app.get("/sendmail",sendMail);
 

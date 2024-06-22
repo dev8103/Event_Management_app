@@ -61,7 +61,12 @@ const loginCC = async (req,res)=>{
             process.env.JWT_SECRET_KEY,
             {expiresIn:"15m"}
         );
-        return res.status(200).json({accessToken});
+
+        const data = {
+            accessToken,
+            type:"cc",
+        }
+        return res.status(200).json(data);
     }
     catch(error){
         console.log("This error is coming from loginCC.js/password verification part");
