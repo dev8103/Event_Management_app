@@ -44,6 +44,7 @@ const loginCC = require("./controllers/ClubCommittee/loginCC");
 const signupStudent = require("./controllers/students/signupStudent");
 const loginStudent = require("./controllers/students/loginStudent");
 const profileStudent = require("./controllers/students/profileStudent")
+const updateprofileStudent = require("./controllers/students/updateProfileStudent");
 const verifyOtp = require('./controllers/students/verifyOtp');
 const verifyEmail = require('./controllers/students/verifyEmail');
 
@@ -74,6 +75,7 @@ app.post("/cc/login",loginCC);
 app.post("/student/signup",signupStudent);
 app.post("/student/login",loginStudent);
 app.get("/student/profile", auth, profileStudent);
+app.post("/student/updateprofile", auth, updateprofileStudent);
 app.post('/student/verifyotp',verifyOtp);
 app.post('/student/verifyemail',verifyEmail);
 
