@@ -35,9 +35,41 @@ function Login() {
                 setEmail("");
                 setPassword("");
             }
-
         }
+        if(typeOfUser == "sbg"){
+            const response = await postRequest("sbg/login", userData);
+            console.log(response?.data)
+            
+            if(response.status == 200){
 
+                localStorage.setItem('user',JSON?.stringify(response?.data?.accessToken));
+                localStorage.setItem('type', JSON?.stringify(response?.data?.type))
+                console.log(localStorage.getItem('user') || '')
+                navigate('/')
+            }
+            else{
+                toast.error(response?.data?.message);
+                setEmail("");
+                setPassword("");
+            }
+        }
+        if(typeOfUser == "committee"){
+            const response = await postRequest("committee/login", userData);
+            console.log(response?.data)
+            
+            if(response.status == 200){
+
+                localStorage.setItem('user',JSON?.stringify(response?.data?.accessToken));
+                localStorage.setItem('type', JSON?.stringify(response?.data?.type))
+                console.log(localStorage.getItem('user') || '')
+                navigate('/')
+            }
+            else{
+                toast.error(response?.data?.message);
+                setEmail("");
+                setPassword("");
+            }
+        }
         console.log(typeOfUser);
         // navigate('/');
     }

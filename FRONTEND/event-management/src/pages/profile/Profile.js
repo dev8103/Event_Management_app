@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from '@mui/material';
-import { getRequestWithToken } from '../../services/Api';
+import { getRequestWithToken, postRequest, postRequestWithToken } from '../../services/Api';
 import Loader from '../../components/Loader';
+import { toast } from 'react-toastify';
 
 function Profile() {
   const [name,setName]=useState("");
@@ -10,27 +11,31 @@ function Profile() {
   const [phone,setPhone]=useState("");
   const [state,setState]=useState("");
   const [gender,setGender]=useState("");
+  const [userData, setUserData] = useState();
   // const [loading,setLoading]=useState(false);
   const updateUserData={
-      name:name||"",
-      username:username||"",
-      email:email||"",
-      phone:phone||"",
-      gender:gender||"",
-      state:state||""
+      name:name||userData?.name,
+      username:username||userData?.username,
+      email:email||userData?.email,
+      phone:phone||userData?.phoneNumber,
   }
   
-  const [userData, setUserData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  const updateUser=()=>{
+  const updateUser=async(e)=>{
+      e.preventDefault();
       console.log(updateUserData);
+      const res = await postRequestWithToken(`student/updateprofile/${userData._id}`,updateUserData);
+      if(res.status==200){
+        toast.success("Your Profile Has Succesfully Updated");
+      }else{
+        toast.error("Something Went Wrong!");
+      }
   }
   useEffect(()=>{
     const fun = async () => {
 
       const res = await getRequestWithToken("student/profile");
-      
       
       if(res.status == 200){
         console.log(res.data);
@@ -65,7 +70,7 @@ function Profile() {
                           {username}
                         </h2>
                         <h3>
-                          {email}
+                          {/* {email} */}
                         </h3>
                         <h3>
                           {phone}
@@ -76,26 +81,27 @@ function Profile() {
                     <h1 className='text-2xl font-bold'>Profile</h1>
                     <form action="" className='flex flex-col gap-3 my-2 relative outline-none  border-none'>
                         <input 
-                        value={userData?.name}
+                        value={updateUserData?.name}
                         onChange={(e)=>setName(e.target.value)}
                         // value={formData?.firstname} onChange={(e)=>setFormData({...formData,firstname:e.target.value})} 
-                        placeholder="firstname" type="text" className='rounded-lg py-3'/>
+                        placeholder="firstname" type="text" className='rounded-lg p-3'/>
                         <input 
-                        value={userData?.username}
+                        value={updateUserData?.username}
                         onChange={(e)=>setUsername(e.target.value)}
                         // value={formData?.username} onChange={(e)=>setFormData({...formData,username:e.target.value})} 
-                        placeholder="username" type="text" className='rounded-lg py-3'/>
+                        placeholder="username" type="text" className='rounded-lg p-3'/>
                         <input 
-                        value={userData?.email}
+                        value={updateUserData?.email}
                         // value={formData?.email} onChange={(e)=>setFormData({...formData,email:e.target.value})} 
-                        placeholder="email" type="email" className='rounded-lg py-3'/>
-                        <FormLabel id="demo-row-radio-buttons-group-label"><p className='font-bold text-black'>Gender</p></FormLabel>
+                        placeholder="email" type="email" className='rounded-lg p-3'/>
+                        {/* <FormLabel id="demo-row-radio-buttons-group-label"><p className='font-bold text-black'>Gender</p></FormLabel>
                             <RadioGroup
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                value={userData?.gender}
+                                value={updateUserData?.gender}
                                 onChange={(e)=>setGender(e.target.value)}
+                                className='px-3'
                                 // value={gender}
                                 // value={formData?.gender}   
                                 // onChange={(e)=>setFormData({...formData,gender:e.target.value})}
@@ -113,15 +119,15 @@ function Profile() {
                         <label htmlFor="dob" className='font-bold'>Date Of Birth</label>
                         <input type="date" 
                         // value={formData?.dob} onChange={(e)=>setFormData({...formData,dob:e.target.value})}  
-                        className='border-1 border-gray-300 py-1 px-2 rounded-sm outline-none'/>
+                        className='border-1 border-gray-300 py-1 px-2 rounded-sm outline-none'/> */}
                         <input 
-                        value={userData?.phone}
+                        value={updateUserData?.phone}
                         onChange={(e)=>setPhone(e.target.value)}
                         // value={formData?.phone} onChange={(e)=>setFormData({...formData,phone:e.target.value})} 
-                        label="phone number" type="text" placeholder='phone number' className='rounded-lg py-3'/>
-                        <label htmlFor="state" className='font-bold'>State</label>
+                        label="phone number" type="text" placeholder='phone number' className='rounded-lg p-3'/>
+                        {/* <label htmlFor="state" className='font-bold'>State</label>
                         <select name="state" 
-                        value={userData?.state}
+                        value={updateUserData?.state}
                         onChange={(e)=>setState(e.target.value)}
                         // value={formData?.state} onChange={(e)=>setFormData({...formData,state:e.target.value})} 
                         className='border-1 border-gray-500 p-3 rounded-md outline-none'>
@@ -135,9 +141,9 @@ function Profile() {
                             <option value="Haryana" name="state">Haryana</option>
                             <option value="Orissa" name="state">Orissa</option>
                             <option value="Jammu And Kashmir" name="state">Jammu And Kashmir</option>
-                        </select>
+                        </select> */}
                         <button className='btn bg-blue-900 text-white hover:bg-blue-950 xl:w-1/5 mx-auto' 
-                        // onClick={handleUpdate}
+                        onClick={updateUser}
                         >Update</button>
                     </form>
                 </div>
