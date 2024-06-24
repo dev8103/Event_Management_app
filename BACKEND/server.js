@@ -75,7 +75,7 @@ app.post("/cc/login",loginCC);
 app.post("/student/signup",signupStudent);
 app.post("/student/login",loginStudent);
 app.get("/student/profile", auth, profileStudent);
-app.post("/student/updateprofile", auth, updateprofileStudent);
+app.post("/student/updateprofile/:id", auth, updateprofileStudent);
 app.post('/student/verifyotp',verifyOtp);
 app.post('/student/verifyemail',verifyEmail);
 
