@@ -41,6 +41,24 @@ const createEvent =  (async (req,res)=>{
     // console.log(clubCommitteeEmail);
 
     try{
+
+        if (!isOnline && venue) {
+            const now = new Date();
+            const overlappingEvents = await Event.find({
+                venue,
+                endTime: { $gt: now }, // Exclude past events
+                $or: [
+                    { startTime: { $lt: endTime }, endTime: { $gt: startTime } },
+                    { startTime: { $gte: startTime, $lt: endTime } },
+                    { endTime: { $gt: startTime, $lte: endTime } }
+                ]
+            });
+
+            if (overlappingEvents.length > 0) {
+                throw new Error("The venue is already booked for the selected time range.");
+            }
+        }
+
         const newEvent = await Event.create({
             name,
             description,

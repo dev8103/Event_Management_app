@@ -18,11 +18,11 @@ const EventSchema = mongoose.Schema({
         required: [true, "Please add the organizing club/committee email address."]
     },
     startTime: {
-        type: String,
+        type: Date,
         required: [true,"Please add the starting time."],
     },
     endTime: {
-        type: String,
+        type: Date,
         required: [true,"Please add the ending time."],
     },
     isOnline: {
