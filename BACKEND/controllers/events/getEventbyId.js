@@ -11,9 +11,9 @@ const getEventbyId =  (async (req,res)=>{
         res.status(200).json(curEvent);
     }
     catch(error){
-        console.log("this error is coming from controllers/events/getEventbuId");
+        console.log("this error is coming from controllers/events/getEventbyId");
         console.log(error);
-        res.status(404).json({message :error.message});
+        res.status(400).json({message :error.message});
     }
 })
 

@@ -58,7 +58,7 @@ const loginSbg = async (req,res)=>{
                 },
             },
             process.env.JWT_SECRET_KEY,
-            {expiresIn:"15m"}
+            {expiresIn:"60m"}
         );
 
         const data = {

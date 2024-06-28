@@ -43,6 +43,10 @@ const EventSchema = mongoose.Schema({
         type: [String],
         default: []
     },
+    curCapacity: {
+        type: Number,
+        default : 0
+    },
     maxCapacity: {
         type: Number,
         required: [true,"Please add maximum capacity."],

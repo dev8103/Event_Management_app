@@ -31,6 +31,7 @@ const loginSbg = require("./controllers/sbg/loginSbg");
 const getEvents = require("./controllers/events/getEvents");
 const createEvent = require("./controllers/events/createEvent");
 const getEventbyId = require("./controllers/events/getEventbyId");
+const getEventbycc = require("./controllers/events/getEventbycc");
 const updateEvent = require("./controllers/events/updateEvent");
 const deleteEvent = require("./controllers/events/deleteEvent");
 // clubcommittee
@@ -61,6 +62,7 @@ app.post("/sbg/login",loginSbg);
 // events
 app.get("/events/get", getEvents);
 app.get("/events/getbyid/:id", getEventbyId);
+app.get("/events/getbycc", auth, getEventbycc);
 app.post("/events/create", auth, createEvent);
 app.post("/events/update/:id", auth, updateEvent);
 app.get("/events/delete/:id", auth, deleteEvent);
