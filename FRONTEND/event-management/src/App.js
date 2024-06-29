@@ -31,21 +31,25 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<SignUp/>}/>
-          <Route path='/create' element={<CreateEvent/>}/>
+          <Route path='/create' element={
+            <ProtectedRouteForCommittee>
+              <CreateEvent/>
+            </ProtectedRouteForCommittee>
+            }/>
           <Route path='/allevents' element={<AllEventList/>}/>
           <Route path='/deletepopup' element={<DeletePopUp/>}/>
           <Route path='/eventdetails' element={<EventDetails/>}/>
           <Route path='/collegecommittee' element={<CollegeCommittees/>}/>
           <Route path='/committeedetail' element={<CommitteeDetails/>}/>
           <Route path='/admineventlist' element={
-            <ProtectedRouteForAdmin>
+            <ProtectedRouteForCommittee>
               <AdminEventlist/>
-            </ProtectedRouteForAdmin>
+            </ProtectedRouteForCommittee>
           }/>
           <Route path='/editevent' element={
-            <ProtectedRouteForAdmin>
+            <ProtectedRouteForCommittee>
               <EditEvent/>
-            </ProtectedRouteForAdmin>
+            </ProtectedRouteForCommittee>
           }/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/loader' element={<Loader/>}/>
@@ -64,9 +68,9 @@ function App() {
 
 export default App
 
-// Protected Route For User
-export const ProtectedRouteForUser = ({children}) =>{
-  const admin = JSON.parse(localStorage?.getItem('user') || ""); // For the object we use JSON.parse
+// Protected Route For Student
+export const ProtectedRouteForStudent = ({children}) =>{
+  // const admin = JSON.parse(localStorage?.getItem('user') || ""); // For the object we use JSON.parse
   const type = JSON.parse(localStorage?.getItem('type') || "")
   if(type === "student"){
         return children
@@ -75,13 +79,23 @@ export const ProtectedRouteForUser = ({children}) =>{
     }
 }
 
-// Protected Route For Admin
-export const ProtectedRouteForAdmin = ({children}) =>{
-    const admin = JSON.parse(localStorage?.getItem('user') || ""); // For the object we use JSON.parse
+// Protected Route For Sbg
+export const ProtectedRouteForSbg = ({children}) =>{
+    // const admin = JSON.parse(localStorage?.getItem('user') || ""); // For the object we use JSON.parse
     const type = JSON.parse(localStorage?.getItem('type') || "")
     if(type === "sbg"){
       return children
     }else{
       return <Navigate to={'/login'}/>
+    }
+}
+
+export const ProtectedRouteForCommittee = ({children}) =>{
+  // const admin = JSON.parse(localStorage?.getItem('user') || ""); // For the object we use JSON.parse
+  const type = JSON.parse(localStorage?.getItem('type') || "")
+  if(type === "cc"){
+        return children
+    }else{
+        return <Navigate to={'/login'}/>
     }
 }

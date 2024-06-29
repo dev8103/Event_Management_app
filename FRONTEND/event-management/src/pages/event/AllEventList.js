@@ -9,10 +9,10 @@ function AllEventList() {
     const context = useContext(MyContext);
     const {items,handleClick} = context;
 
-    let user;
+    let type;
     const getUser=()=>{
-        user = JSON.parse(localStorage?.getItem('user'));
-        console.log("localstorage user",user);
+        type = JSON.parse(localStorage?.getItem('type'));
+        console.log("localstorage user",type);
     }
 
     // const location = useLocation();
@@ -32,21 +32,20 @@ function AllEventList() {
 
     <Layout>
         <div className='bg-blue-100 w-full'>
-            <div className='w-4/5 mx-auto h-full flex flex-col gap-4 p-4'>
+            <div className='w-full h-full flex flex-col gap-4 p-4'>
                 <div className='flex justify-between items-center md:flex-row flex-col'>
                     <div className='py-4 flex gap-4 md:flex-row flex-col'>
-                        <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
+                        <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
                                 onClick={()=>handleClick("all")}>All Events</button>
-                        <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'>Past Events</button>
-                        <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'>Upcoming Events</button>
-                        <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
+                        <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'>Past Events</button>
+                        <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'>Upcoming Events</button>
+                        <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
                                 onClick={()=>handleClick("online")}>Online Events</button>
-                        <button className='bg-white rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
+                        <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
                                 onClick={()=>handleClick("offline")}>Offline Events</button>
                     </div>
                     {
-                        
-                        user?.email === "daiict@gmail.com" ? 
+                        type == "cc" ? 
                         <div className='flex justify-center'>
                             <button className='bg-indigo-600 w-full rounded-full h-10 px-5 font-bold text-md text-white hover:bg-indigo-800 hover:text-white' 
                                     onClick={redirectcreate}>Add Event</button>

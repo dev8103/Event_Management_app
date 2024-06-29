@@ -54,7 +54,7 @@ function Login() {
             }
         }
         if(typeOfUser == "committee"){
-            const response = await postRequest("committee/login", userData);
+            const response = await postRequest("cc/login", userData);
             console.log(response?.data)
             
             if(response.status == 200){
