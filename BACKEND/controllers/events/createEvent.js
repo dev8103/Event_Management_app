@@ -26,7 +26,7 @@ const createEvent =  (async (req,res)=>{
     const {
         name,
         description,
-        eventOrganiser,
+        // eventOrganiser,
         startTime,
         endTime,
         isOnline,
@@ -62,7 +62,7 @@ const createEvent =  (async (req,res)=>{
         const newEvent = await Event.create({
             name,
             description,
-            eventOrganiser,
+            // eventOrganiser,
             clubCommitteeEmail,
             startTime,
             endTime,

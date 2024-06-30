@@ -9,10 +9,10 @@ const EventSchema = mongoose.Schema({
         type: String,
         required: [true,"Please add the event description."],
     },
-    eventOrganiser: {
-        type: String,
-        required: [true,"Please add the event Organiser name."],
-    },
+    // eventOrganiser: {
+    //     type: String,
+    //     required: [true,"Please add the event Organiser name."],
+    // },
     clubCommitteeEmail: {
         type: String,
         required: [true, "Please add the organizing club/committee email address."]

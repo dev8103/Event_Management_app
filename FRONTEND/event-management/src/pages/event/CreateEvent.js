@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import DatePicker from 'react-datetime';
 import Moment from 'react-moment';
 import moment from 'moment';
+import { postRequest, postRequestWithToken } from '../../services/Api';
 
 function CreateEvent() {
   // const context=useContext(MyContext);
@@ -65,9 +66,16 @@ function CreateEvent() {
     // console.log("spon",spon);
   }
 
-  const addEvent=(e)=>{
+  const addEvent=async(e)=>{
     e.preventDefault();
     console.log(event);
+    const res = await postRequestWithToken("events/create",event);
+    console.log("res",res);
+    if(res?.status==200){
+      navigate('/allevents');
+    }else{
+      toast.error("Error");
+    }
   }
 
   const today = moment();
@@ -82,7 +90,9 @@ function CreateEvent() {
       setSelectedDate(formattedDate);
   };
     
-  
+  useEffect(()=>{
+
+  },[])
   return (
     <div>
         <div className='h-full bg-white p-2'>
