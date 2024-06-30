@@ -6,8 +6,9 @@ const createEvent =  (async (req,res)=>{
     // authorised only for club/committee.
     const clubCommitteeEmail = req.userData.email;
     console.log(clubCommitteeEmail);
-
+    
     try{
+
         const isExist = await clubcommittee.findOne({email:clubCommitteeEmail});
         console.log(isExist);
         if(clubCommitteeEmail!=='sbg@daiict.ac.in' && isExist == null){
@@ -21,8 +22,10 @@ const createEvent =  (async (req,res)=>{
         return res.status(401).json({message :error.message});
     }
 
-    console.log(req.userData);
-    console.log(req.body);
+    
+    // console.log(clubCommitteeEmail);
+    // console.log(req.userData);
+    // console.log(req.body);
     const {
         name,
         description,
@@ -38,10 +41,7 @@ const createEvent =  (async (req,res)=>{
         coordinators,
         } = req.body;
     
-    // console.log(clubCommitteeEmail);
-
     try{
-
         if (!isOnline && venue) {
             const now = new Date();
             const overlappingEvents = await Event.find({
