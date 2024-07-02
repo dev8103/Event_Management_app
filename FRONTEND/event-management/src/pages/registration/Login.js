@@ -23,7 +23,7 @@ function Login() {
             const response = await postRequest("student/login", userData);
             console.log(response?.data)
             
-            if(response.status == 200){
+            if(response?.status == 200){
 
                 localStorage.setItem('user',JSON?.stringify(response?.data?.accessToken));
                 localStorage.setItem('type', JSON?.stringify(response?.data?.type))
@@ -40,7 +40,7 @@ function Login() {
             const response = await postRequest("sbg/login", userData);
             console.log(response?.data)
             
-            if(response.status == 200){
+            if(response?.status == 200){
 
                 localStorage.setItem('user',JSON?.stringify(response?.data?.accessToken));
                 localStorage.setItem('type', JSON?.stringify(response?.data?.type))
@@ -57,7 +57,7 @@ function Login() {
             const response = await postRequest("cc/login", userData);
             console.log(response?.data)
             
-            if(response.status == 200){
+            if(response?.status == 200){
 
                 localStorage.setItem('user',JSON?.stringify(response?.data?.accessToken));
                 localStorage.setItem('type', JSON?.stringify(response?.data?.type))

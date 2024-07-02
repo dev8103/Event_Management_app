@@ -33,7 +33,7 @@ function CreateEvent() {
   const [event,setEvent]=useState({
         name:"",
         description:"",
-        eventOrganiser:"",
+        // eventOrganiser:"",
         startTime:"",
         endTime:"",
         isOnline:"",

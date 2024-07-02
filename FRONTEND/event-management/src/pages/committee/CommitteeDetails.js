@@ -1,18 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { DiVim } from 'react-icons/di'
+import { useLocation } from 'react-router-dom'
 
 function CommitteeDetails() {
+  const location = useLocation();
+  const {state} = location;
+  const cc = state?.cc;
+
+  useEffect(()=>{
+    console.log("cc",cc);
+  },[]);
+
   return (
     <div className='h-screen flex flex-col bg-cyan-50 justify-center'>
         <div className='w-full flex justify-center'>
             <div className='h-full w-4/5 flex'>
                 <div className='h-full w-2/3 mx-auto p-16 flex flex-col justify-around'>
-                    <h1 className='font-bold text-3xl'>Cultural Committees</h1>
-                    <p className='text-2xl pt-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, nulla soluta in eius est similique consequuntur voluptatem ad fugiat, facilis velit reiciendis dolor maiores. Numquam consequatur perspiciatis explicabo esse quis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita quidem reiciendis eum quaerat, commodi sit et ut ducimus aut possimus? Debitis repellendus voluptatibus pariatur magni sequi aperiam doloremque porro tempora!</p>
-                    <h2 className='font-bold text-2xl pt-5'>Objectives</h2>
-                    
+                    <h1 className='font-bold text-3xl pt-3'>{cc?.name}</h1>
+                    <p className='text-2xl'> {cc?.description} </p>
+                    <p> {cc?.email} </p>
                 </div>
-                <div className='h-full w-1/3 p-2'>
+                {/* <div className='h-full w-1/3 p-2'>
                     <h1 className='font-bold text-3xl text-center pt-16'>MEMBERS</h1>
                     <div className=' w-full bg-cyan-100 text-xl p-5 mt-5 shadow-2xl border rounded-xl'>
                         <ul className='list-disc flex flex-col gap-5 pl-8'>
@@ -42,7 +50,7 @@ function CommitteeDetails() {
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     </div>
