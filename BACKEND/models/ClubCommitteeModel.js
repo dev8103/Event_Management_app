@@ -5,6 +5,9 @@ const ClubCommitteeSchema = mongoose.Schema({
         type: String,
         required: [true, "Please add the club/committee name."],
     },
+    isclub :{
+        type: Boolean,
+    },
     description: {
         type: String,
         required: [true, "Please add the club/committee description."],
