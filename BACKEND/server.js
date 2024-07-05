@@ -32,6 +32,10 @@ const getEvents = require("./controllers/events/getEvents");
 const createEvent = require("./controllers/events/createEvent");
 const getEventbyId = require("./controllers/events/getEventbyId");
 const getEventbycc = require("./controllers/events/getEventbycc");
+const getPastEvents = require('./controllers/events/getPastEvents');
+const getUpcomingEvents = require('./controllers/events/getUpcomingEvents');
+const getOnlineEvents = require('./controllers/events/getOnlineEvents');
+const getOfflineEvents = require('./controllers/events/getOfflineEvents.js');
 const updateEvent = require("./controllers/events/updateEvent");
 const deleteEvent = require("./controllers/events/deleteEvent");
 // clubcommittee
@@ -64,6 +68,10 @@ app.get("/events/get", getEvents);
 app.get("/events/getbyid/:id", getEventbyId);
 app.get("/events/getbycc", auth, getEventbycc);
 app.post("/events/create", auth, createEvent);
+app.get("/events/get/past", getPastEvents);
+app.get("/events/get/upcoming", getUpcomingEvents);
+app.get("/events/get/online", getOnlineEvents);
+app.get("/events/get/offline", getOfflineEvents);
 app.post("/events/update/:id", auth, updateEvent);
 app.get("/events/delete/:id", auth, deleteEvent);
 // ClubCommittee
