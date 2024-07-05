@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react'
 import { useLocation } from 'react-router-dom';
 
@@ -5,6 +6,26 @@ function EventDetails() {
     const location = useLocation();
     const {state} = location;
     const event = state?.event;
+    const startTimestamp = event?.startTime;
+    const endTimestamp = event?.endTime;
+    const startDate = moment(startTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a');
+    const endDate = moment(endTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a');
+    console.log(startDate);
+    console.log(endDate);
+    // const newEvent = await Event.create({
+    //     name,
+    //     description,
+    //     clubCommitteeEmail,
+    //     startTime,
+    //     endTime,
+    //     isOnline,
+    //     meetingLink,
+    //     venue,
+    //     mainGuest,
+    //     sponsors,
+    //     maxCapacity,
+    //     coordinators,
+    // })
     // console.log(state?.event);
   return (
     <div className='h-screen bg-blue-50 flex justify-center items-center'>
@@ -21,37 +42,37 @@ function EventDetails() {
                         <tbody>
                             <tr>
                                 <td className='border border-slate-400 px-2 font-semibold'>Name</td>
-                                <td className='border border-slate-400 px-2'>{event.name}</td>
+                                <td className='border border-slate-400 px-2'>{event?.name}</td>
                             </tr>
                             <tr>
                                 <td className='border border-slate-400 px-2 font-semibold'>Start Date</td>
-                                <td className='border border-slate-400 px-2'>1st July 2024</td>
+                                <td className='border border-slate-400 px-2'>{startDate}</td>
                             </tr>
                             <tr>
                                 <td className='border border-slate-400 px-2 font-semibold'>End Date</td>
-                                <td className='border border-slate-400 px-2'>3rd July 2024</td>
+                                <td className='border border-slate-400 px-2'>{endDate}</td>
                             </tr>
                             <tr>
                                 <td className='border border-slate-400 px-2 font-semibold'>Day Timing</td>
-                                <td className='border border-slate-400 px-2'>10:00 AM to 5:00 PM</td>
+                                <td className='border border-slate-400 px-2'></td>
                             </tr>
                             <tr>
                                 <td className='border border-slate-400 px-2 font-semibold'>Event Mode</td>
-                                <td className='border border-slate-400 px-2'>{event.mode}</td>
+                                <td className='border border-slate-400 px-2'>{event?.isOnline}</td>
                             </tr>
                             <tr>
                                 <td className='border border-slate-400 px-2 font-semibold'>Total allowed guests</td>
-                                <td className='border border-slate-400 px-2'>{event.capacity}</td>
+                                <td className='border border-slate-400 px-2'>{event?.maxCapacity}</td>
                             </tr>
                             <tr>
                                 <td className='border border-slate-400 px-2 font-semibold'>Total registered</td>
-                                <td className='border border-slate-400 px-2'>{event.registeredCount}</td>
+                                <td className='border border-slate-400 px-2'>{event?.registeredCount}</td>
                             </tr>
                             <tr>
                                 <td className='border border-slate-400 px-2 font-semibold'>Description</td>
                                 <td className='border border-slate-400 px-2'>
                                     <div className='overflow-y-auto h-32'>
-                                        This event held by this club and committee Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis dolorem neque commodi suscipit repudiandae harum consequuntur dolorum rem facilis autem qui aliquam necessitatibus sed, vel deleniti reiciendis, nesciunt molestiae voluptatibus.
+                                        {event?.description}
                                     </div>
                                 </td>
                             </tr>

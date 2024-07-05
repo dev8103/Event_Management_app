@@ -3,12 +3,15 @@ import Layout from '../../components/layout/Layout'
 import EventCard from '../../components/EventCard'
 import { useLocation, useNavigate } from 'react-router-dom'
 import MyContext from '../../context/data/MyContext';
+import { getRequest } from '../../services/Api';
+import { toast } from 'react-toastify';
 // import events from './events.json'
 
 function AllEventList() {
     const context = useContext(MyContext);
-    const {items,handleClick} = context;
-
+    // const {items} = context;
+    const [items,setItems]=useState([]);
+    
     let type;
     const getUser=()=>{
         type = JSON.parse(localStorage?.getItem('type'));
@@ -25,6 +28,27 @@ function AllEventList() {
         navigate('/create');
     }
     // console.log(events);
+
+    const handleClick=async(type)=>{
+        // setLoading(true);
+        console.log(type);   
+        const res = await getRequest('events/get');
+        console.log(res.data);
+        if(res.status==200){
+            const allEvents=res.data;
+            setItems(allEvents);
+        }else{
+            toast.error("No data found.");
+        }
+        // if(type=="all"){
+        // }
+        // else{
+        //   const temp=allEvents?.filter((data)=>data.isOnline===type)
+        //   setItems(temp);
+        // }
+        // setLoading(false);
+      }
+
     useEffect(()=>{
         handleClick("all");
     },[getUser()]);
@@ -40,9 +64,9 @@ function AllEventList() {
                         <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'>Past Events</button>
                         <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'>Upcoming Events</button>
                         <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
-                                onClick={()=>handleClick("online")}>Online Events</button>
+                                onClick={()=>handleClick(true)}>Online Events</button>
                         <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
-                                onClick={()=>handleClick("offline")}>Offline Events</button>
+                                onClick={()=>handleClick(false)}>Offline Events</button>
                     </div>
                     {
                         type == "cc" ? 

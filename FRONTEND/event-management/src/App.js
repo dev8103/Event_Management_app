@@ -7,7 +7,7 @@ import SignUp from './pages/registration/SignUp'
 import NoPage from './pages/nopage/NoPage'
 import CreateEvent from './pages/event/CreateEvent'
 import AllEventList from './pages/event/AllEventList'
-import DeletePopUp from './components/popup/DeletePopUp'
+import DeletePopUp from './pages/event/DeletePopUp'
 import EventDetails from './pages/event/EventDetails'
 import CollegeCommittees from './pages/committee/CollegeCommittees'
 import CommitteeDetails from './pages/committee/CommitteeDetails'
@@ -22,6 +22,9 @@ import MobileAuth from './pages/registration/MobileAuth'
 import CodeVerification from './pages/registration/CodeVerification'
 import SuccesMessage from './pages/registration/SuccesMessage'
 import RegistrationFacility from './pages/event/RegistrationFacility'
+import CreateCommittee from './pages/committee/CreateCommittee'
+import UpdateCommittee from './pages/committee/UpdateCommittee'
+import DeleteCommittee from './pages/committee/DeleteCommittee'
 function App() {
 
   return (
@@ -40,7 +43,10 @@ function App() {
           <Route path='/deletepopup' element={<DeletePopUp/>}/>
           <Route path='/eventdetails' element={<EventDetails/>}/>
           <Route path='/collegecommittee' element={<CollegeCommittees/>}/>
-          <Route path='/committeedetail' element={<CommitteeDetails/>}/>
+          <Route path='/committeedetails' element={<CommitteeDetails/>}/>
+          <Route path='/createcommittee' element={<CreateCommittee/>}/>
+          <Route path='/updatecc' element={<UpdateCommittee/>}/>
+          <Route path='/deletecc' element={<DeleteCommittee/>}/>
           <Route path='/admineventlist' element={
             <ProtectedRouteForCommittee>
               <AdminEventlist/>

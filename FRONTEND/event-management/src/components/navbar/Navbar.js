@@ -8,6 +8,7 @@ function Navbar() {
   const toggleNavbar=()=>{
     setIsOpen(!isOpen);
   }
+  const type = JSON.parse(localStorage?.getItem('type'));
   const user = JSON.parse(localStorage?.getItem('user'));
 
   const logout = ()=>{
@@ -22,12 +23,20 @@ function Navbar() {
           </div>
           <div className='hidden md:flex'>
             <ul className='flex gap-5 justify-between'>
-              <li><a href="/">Home</a></li>
+              <li><a href="/createcommittee">Add Club/Committee</a></li>
               <li>
-                <a 
-                  href={user?.email === "daiict@gmail.com" ? '/admineventlist' : '/allevents'}
-                  // href="/allevents"
-                >Eventlist</a>
+                {
+                  type == "sbg"?
+                  <a 
+                    href="/collegecommittee"
+                  >Club/Committee</a>
+                  :
+                  <a 
+                    href={user?.email === "daiict@gmail.com" ? '/admineventlist' : '/allevents'}
+                    // href="/allevents"
+                  >Eventlist</a>
+
+                }
               </li>
               <li><a href='/signup'>Sign Up</a></li>
               <li><a href="" onClick={logout}>Log Out</a></li>

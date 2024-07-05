@@ -1,22 +1,34 @@
-import { Player } from '@lottiefiles/react-lottie-player'
 import React, { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getRequestWithToken } from '../../services/Api';
+import { toast } from 'react-toastify';
+import { Player } from '@lottiefiles/react-lottie-player';
 
-function DeletePopUp() {
-    // const [del,setDel] = useState(false);
+function DeleteCommittee() {
     const location = useLocation();
     const {state} = location;
-    const event = state.event;
-    const fun=(option)=>{
+    const cc = state?.cc;
+
+    const navigate = useNavigate();
+    const fun=async(option)=>{
         if(option){
             // Delete Event
+            const res = await getRequestWithToken(`cc/delete/${cc._id}`);
+            if(res?.status==200){
+                toast.success("Your Club/Committee is Succesfully deleted.");
+                // navigate('/admineventlist');
+            }else{
+                toast.error("Error.");
+            }
         }
+        navigate('/collegecommittee');
     }
     useEffect(()=>{
         console.log("I am DeletePopup")
     },[])
   return (
-    <div className='h-screen w-full flex justify-center items-center'>
+    <div>
+        <div className='h-screen w-full flex justify-center items-center'>
         <div className='h-2/5 md:w-2/6 bg-gradient-to-b from-cyan-100 to-blue-200 border rounded-lg mx-auto px-3'>
             <div className='h-3/4 flex flex-col justify-center items-center'>
                 <Player
@@ -32,7 +44,8 @@ function DeletePopUp() {
             </div>
         </div>
     </div>
+    </div>
   )
 }
 
-export default DeletePopUp
+export default DeleteCommittee
