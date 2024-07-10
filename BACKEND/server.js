@@ -52,6 +52,9 @@ const profileStudent = require("./controllers/students/profileStudent")
 const updateprofileStudent = require("./controllers/students/updateProfileStudent");
 const verifyOtp = require('./controllers/students/verifyOtp');
 const verifyEmail = require('./controllers/students/verifyEmail');
+const changePasswordStudent = require('./controllers/students/changePasswordStudent.js');
+const forgotPasswordStudent = require('./controllers/students/forgotPasswordStudent.js');
+const updateForgotPassword = require('./controllers/students/updateForgotPassword.js');
 
 
 // mailer
@@ -88,6 +91,10 @@ app.get("/student/profile", auth, profileStudent);
 app.post("/student/updateprofile/:id", auth, updateprofileStudent);
 app.post('/student/verifyotp',verifyOtp);
 app.post('/student/verifyemail',verifyEmail);
+app.post('/student/changepassword', auth, changePasswordStudent);
+app.post('/student/forgotpassword', forgotPasswordStudent);
+app.post('/student/updateforgotpassword',updateForgotPassword);
+
 
 // app.get("/sendmail",sendMail);
 

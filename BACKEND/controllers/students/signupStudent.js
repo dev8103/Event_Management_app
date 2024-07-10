@@ -28,39 +28,6 @@ const signupStudent = async (req, res) => {
             return res.status(400).json({ message: "User with this email already exists." });
         }
 
-        // // email verification
-        // const match = await otp.findOne({email});
-        // if(match){
-        //     try{
-        //         await otp.deleteOne({email});
-        //         console.log("Document deleted successfully.");
-        //     }
-        //     catch(error){
-        //         console.log("This error is coming from verifyEmail.js/match part");
-        //         console.log("Error deleting document ",error);
-        //         return res.status(500).json({message:"Internal server error"});
-        //     }
-        // }
-
-        // try{
-        //     const newotp_number = otpGenerator.generate(6, { lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false });
-        //     // console.log(newotp_number);
-    
-        //     const hashed_otp = await bcrypt.hash(newotp_number,8);
-        //     console.log('hashed otp :',hashed_otp);
-        
-        //     const mailer = mailforsignup(email,newotp_number);
-        //     const newotp = await otp.create({
-        //         email,
-        //         otp_number:hashed_otp,
-        //     })
-        // }
-        // catch(error){
-        //     console.log('This error is coming from signupStudent.js/mailer part.');
-        //     console.log(error);
-        //     return res.status(400).send();
-        // }
-
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
         console.log(`hashed password: ${hashedPassword}`);

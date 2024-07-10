@@ -5,9 +5,9 @@ const student = require('../../models/studentModel');
 const otp = require('../../models/otpModel');
 
 const x = require('../../mailer/mailer');
-const mailforsignup = x.signup;
+const mailForForgotPassword = x.forgotPasswordEmail;
 
-const verifyEmail = async (req,res)=>{
+const forgotPassword = async (req,res)=>{
     const email = req.body.email;
 
     // check whether student signed up or not.
@@ -19,21 +19,7 @@ const verifyEmail = async (req,res)=>{
         }
     }
     catch(error){
-        console.log("This error is coming from controllers/students/verifyEmail.js not signed up part");
-        console.log(error);
-        res.status(400).json({message:error.message});
-        return;
-    }
-
-    // check whether student already verified
-    try{
-        if(curStudent.isverified == true){
-            res.status(400);
-            throw new Error("Email address is already verified.");
-        }
-    }
-    catch(error){
-        console.log("This error is coming from controllers/students/verifyEmail.js already verified part");
+        console.log("This error is coming from controllers/students/forgotpassword.js not signed up part");
         console.log(error);
         res.status(400).json({message:error.message});
         return;
@@ -46,7 +32,7 @@ const verifyEmail = async (req,res)=>{
             console.log("Document deleted successfully.");
         }
         catch(error){
-            console.log("This error is coming from verifyEmail.js/match part");
+            console.log("This error is coming from forgotpassword.js/match part");
             console.log("Error deleting document ",error);
             return res.status(500).json({message:"Internal server error"});
         }
@@ -59,7 +45,7 @@ const verifyEmail = async (req,res)=>{
         const hashed_otp = await bcrypt.hash(newotp_number,8);
         console.log('hashed otp :',hashed_otp);
     
-        const mailer = mailforsignup(email,newotp_number);
+        const mailer = mailForForgotPassword(email,newotp_number);
         const newotp = await otp.create({
             email,
             otp_number:hashed_otp,
@@ -68,10 +54,10 @@ const verifyEmail = async (req,res)=>{
         res.status(200).json({message:"Email sent successfully."});
     }
     catch(error){
-        console.log('This error is coming from verifyEmail.js/mailer part.');
+        console.log('This error is coming from forgotPassword.js/mailer part.');
         console.log(error);
         return res.status(400).send();
     }
 }
 
-module.exports = verifyEmail;
+module.exports = forgotPassword;
