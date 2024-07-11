@@ -1,5 +1,9 @@
 const Event = require("../../models/eventModel");
+const studentModel = require("../../models/studentModel");
 const clubcommittee = require('../../models/ClubCommitteeModel');
+
+const x = require('../../mailer/mailer');
+const mailforsignup = x.NewEventCreated;
 
 const createEvent =  (async (req,res)=>{
     
@@ -8,7 +12,6 @@ const createEvent =  (async (req,res)=>{
     console.log(clubCommitteeEmail);
     
     try{
-
         const isExist = await clubcommittee.findOne({email:clubCommitteeEmail});
         console.log(isExist);
         if(clubCommitteeEmail!=='sbg@daiict.ac.in' && isExist == null){
@@ -17,7 +20,7 @@ const createEvent =  (async (req,res)=>{
         }
     }
     catch(error){
-        console.log("this error is coming from controllers/events/createEvent");
+        console.log("this error is coming from controllers/events/createEvent 1");
         console.log(error);
         return res.status(401).json({message :error.message});
     }
@@ -62,7 +65,6 @@ const createEvent =  (async (req,res)=>{
         const newEvent = await Event.create({
             name,
             description,
-            // eventOrganiser,
             clubCommitteeEmail,
             startTime,
             endTime,
@@ -74,7 +76,16 @@ const createEvent =  (async (req,res)=>{
             maxCapacity,
             coordinators,
         })
-        res.status(200).json(newEvent);
+
+        // Fetch all student emails
+        const students = await studentModel.find({});
+        const studentEmails = students.map(student => student.email);
+
+        for(const email of studentEmails){
+            mailforsignup(email,name,description,startTime,endTime,venue);
+        }
+
+        res.status(200).json({message:"New Event is created successfully."});
     }
     catch(error){
         console.log("this error is coming from controllers/events/createEvent");

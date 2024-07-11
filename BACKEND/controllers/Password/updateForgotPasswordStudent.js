@@ -39,7 +39,7 @@ const changePasswordStudent = (async (req,res)=>{
         const filter = {email};
         const update = {password:newHashedPassword};
         const updatedStudent = await studentModel.findOneAndUpdate(filter,update,{new:true});
-        res.status(200).json({message:"Password changes successfully."});
+        res.status(200).json({message:"Password changed successfully."});
     }
     catch(error){
         console.log("This error is coming from students/changepassword.js change part");

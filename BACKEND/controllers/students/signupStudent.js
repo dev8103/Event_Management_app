@@ -1,11 +1,6 @@
 const bcrypt = require("bcrypt");
-const otpGenerator = require('otp-generator');
-
 const Student = require('../../models/studentModel');
-const otp = require('../../models/otpModel');
 
-const x = require('../../mailer/mailer');
-const mailforsignup = x.signup;
 
 const signupStudent = async (req, res) => {
     const {

@@ -38,6 +38,7 @@ const getOnlineEvents = require('./controllers/events/getOnlineEvents');
 const getOfflineEvents = require('./controllers/events/getOfflineEvents.js');
 const updateEvent = require("./controllers/events/updateEvent");
 const deleteEvent = require("./controllers/events/deleteEvent");
+const registerOnEvent = require('./controllers/events/registerOnEvent.js');
 // clubcommittee
 const getCC = require("./controllers/ClubCommittee/getCC");
 const getCCbyid = require("./controllers/ClubCommittee/getCCbyid");
@@ -48,13 +49,13 @@ const loginCC = require("./controllers/ClubCommittee/loginCC");
 // student
 const signupStudent = require("./controllers/students/signupStudent");
 const loginStudent = require("./controllers/students/loginStudent");
-const profileStudent = require("./controllers/students/profileStudent")
+const profileStudent = require("./controllers/students/profileStudent");
 const updateprofileStudent = require("./controllers/students/updateProfileStudent");
 const verifyOtp = require('./controllers/students/verifyOtp');
 const verifyEmail = require('./controllers/students/verifyEmail');
-const changePasswordStudent = require('./controllers/students/changePasswordStudent.js');
-const forgotPasswordStudent = require('./controllers/students/forgotPasswordStudent.js');
-const updateForgotPassword = require('./controllers/students/updateForgotPassword.js');
+const changePasswordStudent = require('./controllers/Password/changePasswordStudent.js');
+const forgotPasswordStudent = require('./controllers/Password/forgotPasswordStudent.js');
+const updateForgotPassword = require('./controllers/Password/updateForgotPasswordStudent.js');
 
 
 // mailer
@@ -77,6 +78,7 @@ app.get("/events/get/online", getOnlineEvents);
 app.get("/events/get/offline", getOfflineEvents);
 app.post("/events/update/:id", auth, updateEvent);
 app.get("/events/delete/:id", auth, deleteEvent);
+app.get("/events/register/:id", auth, registerOnEvent);
 // ClubCommittee
 app.get("/cc/get", auth, getCC);
 app.get("/cc/getbyid/:id", auth, getCCbyid);
