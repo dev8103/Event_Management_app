@@ -1,6 +1,7 @@
 // built in modules
 const express = require("express");
 const cors = require('cors');
+const multer = require('multer');
 const dotenv = require("dotenv").config();
 
 // database connection
@@ -20,6 +21,7 @@ app.use(cors(corsOptions));
 
 // middleware
 app.use(express.json());
+app.use(express.urlencoded({extended:false}));
 
 
 // functions
@@ -79,6 +81,7 @@ app.get("/events/get/offline", getOfflineEvents);
 app.post("/events/update/:id", auth, updateEvent);
 app.get("/events/delete/:id", auth, deleteEvent);
 app.get("/events/register/:id", auth, registerOnEvent);
+
 // ClubCommittee
 app.get("/cc/get", auth, getCC);
 app.get("/cc/getbyid/:id", auth, getCCbyid);
@@ -98,9 +101,26 @@ app.post('/student/forgotpassword', forgotPasswordStudent);
 app.post('/student/updateforgotpassword',updateForgotPassword);
 
 
-// app.get("/sendmail",sendMail);
+// upload image into backend
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb){
+        return cb(null,"./uploads");
+    },
+    filename: function (req, file, cb){
+        return cb(null,`${Date.now()}-${file.originalname}`);
+    }
+})
 
+const upload = multer({storage});
+
+app.post('/events/uploadbanner', upload.single("banner"), (req,res)=>{
+    console.log(req.file);
+    return res.status(200).json({
+        message:"Image uploaded successfully.",
+        bannerpath:req.file.path,
+    });
+});
 
 // invalid urls handling..
 app.all('*',(req,res)=>{

@@ -76,7 +76,7 @@ const createEvent =  (async (req,res)=>{
             maxCapacity,
             coordinators,
         })
-
+        
         // Fetch all student emails
         const students = await studentModel.find({});
         const studentEmails = students.map(student => student.email);
