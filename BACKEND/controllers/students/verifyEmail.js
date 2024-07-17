@@ -59,11 +59,11 @@ const verifyEmail = async (req,res)=>{
         const hashed_otp = await bcrypt.hash(newotp_number,8);
         console.log('hashed otp :',hashed_otp);
     
-        const mailer = mailforsignup(email,newotp_number);
         const newotp = await otp.create({
             email,
             otp_number:hashed_otp,
         })
+        const mailer = mailforsignup(email,newotp_number);
 
         res.status(200).json({message:"Email sent successfully."});
     }

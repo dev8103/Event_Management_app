@@ -78,7 +78,7 @@ const createEvent =  (async (req,res)=>{
         })
         
         // Fetch all student emails
-        const students = await studentModel.find({});
+        const students = await studentModel.find({isverified:true});
         const studentEmails = students.map(student => student.email);
 
         for(const email of studentEmails){

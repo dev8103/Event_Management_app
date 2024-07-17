@@ -23,13 +23,12 @@ mailTransporter.verify((error, success) => {
     console.log("Mailer is ready to send emails.");
 });
 
-const signup = (async (email, otp) => {
-
-    let mailDetails = {
+const signup = async (email, otp) => {
+    const mailDetails = {
         from: 'Events at DAIICT',
         to: email,
         subject: 'Welcome to Events@DAIICT',
-        text:`OTP for the verification of your mail is ${otp}.`,
+        text: `OTP for the verification of your mail is ${otp}.`,
     };
     
     const s = await mailTransporter.sendMail(mailDetails, function (err, data) {
@@ -40,8 +39,7 @@ const signup = (async (email, otp) => {
             console.log('Email sent successfully');
         }
     });
-    // console.log("oooo");
-})
+};
 
 const forgotPasswordEmail = (async (email, otp) => {
 
@@ -54,7 +52,7 @@ const forgotPasswordEmail = (async (email, otp) => {
     
     const s = await mailTransporter.sendMail(mailDetails, function (err, data) {
         if (err) {
-            console.log('Error Occur in mailer.js/signup');
+            console.log('Error Occur in mailer.js/forgotPasswordEmail');
             console.log(err);
         } else {
             console.log('Email sent successfully');
@@ -86,7 +84,7 @@ const NewEventCreated = (async (email, name, description, startTime, endTime, ve
     
     const s = await mailTransporter.sendMail(mailDetails, function (err, data) {
         if (err) {
-            console.log('Error Occur in mailer.js/signup');
+            console.log('Error Occur in mailer.js/NewEventCreated');
             console.log(err);
         } else {
             console.log('Email sent successfully');
