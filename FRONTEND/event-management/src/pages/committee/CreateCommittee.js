@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function CreateCommittee() {
     const [details,setDetails] = useState({
-        isClub:false,
+        isclub:false,
         name:"",
         description:"",
         email:"",
@@ -32,15 +32,14 @@ function CreateCommittee() {
           <div className='md:w-1/3 w-full bg-indigo-50 h-full mx-auto p-5 border rounded-xl'>
             <h1 className='text-center font-bold text-3xl font-serif pb-3'>Create Club/Committee</h1>
 
-            
             {/* club/committee */}
             <div className='flex flex-row gap-2'>
                 <input type="radio" id="on" name="mode" value="Club" 
-                onChange={(e)=>setDetails({...details,isClub:true})}
+                onChange={(e)=>setDetails({...details,isclub:true})}
                 />
                 <label for="club">Club</label>
                 <input type="radio" id="off" name="mode" value="Committee" 
-                onChange={(e)=>setDetails({...details,isClub:false})}
+                onChange={(e)=>setDetails({...details,isclub:false})}
                 />
                 <label for="committee">Committee</label>
             </div>
@@ -48,7 +47,7 @@ function CreateCommittee() {
             {/* Event name */}
             <div className='flex flex-col justify-center gap-2'>
                 {
-                    details?.isClub === true ?
+                    details?.isclub === true ?
                     <label htmlFor="name">
                     Club Name: 
                     </label>:
@@ -103,7 +102,7 @@ function CreateCommittee() {
                 className='btn bg-indigo-600 border rounded-md h-10 hover:bg-slate-500 text-white font-semibold'
                 onClick={addCc}>
                 {
-                    details?.isClub ?
+                    details?.isclub ?
                     <p>Add Club</p> :
                     <p>Add Committee</p>
                 }

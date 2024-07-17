@@ -25,6 +25,8 @@ import RegistrationFacility from './pages/event/RegistrationFacility'
 import CreateCommittee from './pages/committee/CreateCommittee'
 import UpdateCommittee from './pages/committee/UpdateCommittee'
 import DeleteCommittee from './pages/committee/DeleteCommittee'
+import ForgotPass from './pages/registration/ForgotPass'
+import UpdatePassVerify from './pages/registration/UpdatePassVerify'
 function App() {
 
   return (
@@ -34,6 +36,8 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/signup' element={<SignUp/>}/>
+          <Route path='/forgotpass' element={<ForgotPass/>}/>
+          <Route path='/updatepassverify' element={<UpdatePassVerify/>}/>
           <Route path='/create' element={
             <ProtectedRouteForCommittee>
               <CreateEvent/>
@@ -57,7 +61,11 @@ function App() {
               <EditEvent/>
             </ProtectedRouteForCommittee>
           }/>
-          <Route path='/profile' element={<Profile/>}/>
+          <Route path='/profile' element={
+            <ProtectedRouteForStudent>
+              <Profile/>
+            </ProtectedRouteForStudent>
+          }/>
           <Route path='/loader' element={<Loader/>}/>
           <Route path='/eventcal' element={<EventCal/>}/>
           <Route path='/mobileauth' element={<MobileAuth/>}/>
@@ -76,8 +84,10 @@ export default App
 
 // Protected Route For Student
 export const ProtectedRouteForStudent = ({children}) =>{
-  // const admin = JSON.parse(localStorage?.getItem('user') || ""); // For the object we use JSON.parse
-  const type = JSON.parse(localStorage?.getItem('type') || "")
+
+  const value = localStorage?.getItem('type');
+  const type = JSON.parse(value) || ""; // For the object we can use json.parse
+
   if(type === "student"){
         return children
     }else{
@@ -87,8 +97,7 @@ export const ProtectedRouteForStudent = ({children}) =>{
 
 // Protected Route For Sbg
 export const ProtectedRouteForSbg = ({children}) =>{
-    // const admin = JSON.parse(localStorage?.getItem('user') || ""); // For the object we use JSON.parse
-    const type = JSON.parse(localStorage?.getItem('type') || "")
+    const type = JSON.parse(localStorage?.getItem('type')) || "";
     if(type === "sbg"){
       return children
     }else{
@@ -97,8 +106,7 @@ export const ProtectedRouteForSbg = ({children}) =>{
 }
 
 export const ProtectedRouteForCommittee = ({children}) =>{
-  // const admin = JSON.parse(localStorage?.getItem('user') || ""); // For the object we use JSON.parse
-  const type = JSON.parse(localStorage?.getItem('type') || "")
+  const type = JSON.parse(localStorage?.getItem('type')) || "";
   if(type === "cc"){
         return children
     }else{

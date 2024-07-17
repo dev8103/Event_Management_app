@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { FaRegUserCircle } from 'react-icons/fa'
 import { ImCross } from 'react-icons/im';
 import { LuAlignJustify } from 'react-icons/lu';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function Navbar() {
   const [isOpen,setIsOpen]=useState(false);
@@ -11,9 +13,13 @@ function Navbar() {
   const type = JSON.parse(localStorage?.getItem('type'));
   const user = JSON.parse(localStorage?.getItem('user'));
 
+  const navigate = useNavigate();
   const logout = ()=>{
     localStorage.clear('user');
-    window.location.href = '/login';
+    localStorage.clear('type');
+    // toast.success("Succesfully Logged Out",{autoClose:3000});
+    navigate('/login');
+    // window.location.href = '/login';
   }
   return (
     <div>
@@ -23,7 +29,13 @@ function Navbar() {
           </div>
           <div className='hidden md:flex'>
             <ul className='flex gap-5 justify-between'>
-              <li><a href="/createcommittee">Add Club/Committee</a></li>
+              <li>
+                {
+                  (type == "sbg" || type == "cc" )? 
+                  <a href="/createcommittee">Add Club/Committee</a>:
+                  ""
+                }
+              </li>
               <li>
                 {
                   type == "sbg"?
@@ -34,12 +46,13 @@ function Navbar() {
                   <a 
                     href={user?.email === "daiict@gmail.com" ? '/admineventlist' : '/allevents'}
                     // href="/allevents"
-                  >Eventlist</a>
+                  >Home</a>
 
                 }
               </li>
               <li><a href='/signup'>Sign Up</a></li>
-              <li><a href="" onClick={logout}>Log Out</a></li>
+              <li><a href='/login'>Sign In</a></li>
+              <li><a href="" onClick={()=>logout()}>Log Out</a></li>
               {/* <li>
                   {user ? "": <a href='/'>Sign Up</a>}
                   {user ? <a href="" onClick={logout}>Log out</a>: ""}
@@ -59,8 +72,7 @@ function Navbar() {
           isOpen && (
             <div className='flex justify-center p-2 items-center bg-indigo-600 text-white text-xl '>
               <ul className='flex flex-col justify-center items-center gap-1 w-full'>
-                <li className='shadow-xl w-full text-center p-3'><a href="/">Home</a></li> 
-                <li className='shadow-xl w-full text-center p-3'><a href="/allevents">Eventlist</a></li>
+                <li className='shadow-xl w-full text-center p-3'><a href="/allevents">Home</a></li>
                 <li className='shadow-xl w-full text-center p-3'><a href="/signup">Sign Up</a>
                   {/* <li>{user ? "" : <a href='/'>Sign Up</a>}</li> */}
                   {/* <li>{user ? <a href="" onClick={logout}>Log out</a>: ""}</li> */}

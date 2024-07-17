@@ -27,15 +27,14 @@ function AllEventList() {
     const redirectcreate=()=>{
         navigate('/create');
     }
-    // console.log(events);
 
     const handleClick=async(type)=>{
         // setLoading(true);
         console.log(type);   
         const res = await getRequest('events/get');
-        console.log(res.data);
-        if(res.status==200){
-            const allEvents=res.data;
+        console.log(res?.data);
+        if(res?.status==200){
+            const allEvents=res?.data;
             setItems(allEvents);
         }else{
             toast.error("No data found.");
@@ -49,6 +48,47 @@ function AllEventList() {
         // setLoading(false);
       }
 
+    const onLineEvent=async()=>{
+        const res = await getRequest('events/get/online');
+        console.log("res",res);
+        if(res?.status==200){
+            const events=res?.data;
+            setItems(events);
+        }else{
+            toast.error("No Data Found.");
+        }
+    }
+
+    const offLineEvent=async()=>{
+        const res = await getRequest('events/get/offline');
+        if(res?.status==200){
+            const events=res?.data;
+            setItems(events);
+        }else{
+            toast.error("No Data Found.");
+        }
+    }
+
+    const pastEvent=async()=>{
+        const res = await getRequest('events/get/past');
+        if(res.status==200){
+            const events=res.data;
+            setItems(events);
+        }else{
+            toast.error("No Data Found.");
+        }
+    }
+
+    const upcomingEvent=async()=>{
+        const res = await getRequest('events/get/upcoming');
+        if(res.status==200){
+            const events=res.data;
+            setItems(events);
+        }else{
+            toast.error("No Data Found.");
+        }
+    }
+
     useEffect(()=>{
         handleClick("all");
     },[getUser()]);
@@ -61,12 +101,14 @@ function AllEventList() {
                     <div className='py-4 flex gap-4 md:flex-row flex-col'>
                         <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
                                 onClick={()=>handleClick("all")}>All Events</button>
-                        <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'>Past Events</button>
-                        <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'>Upcoming Events</button>
                         <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
-                                onClick={()=>handleClick(true)}>Online Events</button>
+                                onClick={()=>pastEvent()}>Past Events</button>
                         <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
-                                onClick={()=>handleClick(false)}>Offline Events</button>
+                                onClick={()=>upcomingEvent()}>Upcoming Events</button>
+                        <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
+                                onClick={()=>onLineEvent()}>Online Events</button>
+                        <button className='bg-gray-50 rounded-full h-10 px-5 font-bold text-md hover:bg-indigo-600 hover:text-white'
+                                onClick={()=>offLineEvent()}>Offline Events</button>
                     </div>
                     {
                         type == "cc" ? 

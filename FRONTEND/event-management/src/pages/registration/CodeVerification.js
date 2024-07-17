@@ -22,7 +22,7 @@ function CodeVerification() {
         if(res.status==200){
             navigate('/successmessage');
         }else{
-            toast.error("Your OTP is invalid");
+            toast.error("Please Enter Valid OTP");
         }
   }
 

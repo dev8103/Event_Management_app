@@ -8,6 +8,40 @@ function EditEvent() {
     const {state} = location;
     const [event,setEvent] = useState(state?.event);
 
+
+    const updateGuest = (e, idx) => {
+      const updatedGuests = [...event.mainGuest];
+      updatedGuests[idx] = e.target.value;
+      setEvent({ ...event, mainGuest: updatedGuests });
+    };
+  
+    const addGuest = (e) => {
+      e.preventDefault();
+      setEvent({ ...event, mainGuest: [...event.mainGuest, ""] });
+    };
+  
+    const updateSponsor = (e, idx) => {
+      const updatedSponsors = [...event.sponsors];
+      updatedSponsors[idx] = e.target.value;
+      setEvent({ ...event, sponsors: updatedSponsors });
+    };
+  
+    const addSponsor = (e) => {
+      e.preventDefault();
+      setEvent({ ...event, sponsors: [...event.sponsors, ""] });
+    };
+  
+    const updateCoordinator = (e, idx, field) => {
+      const updatedCoordinators = [...event.coordinators];
+      updatedCoordinators[idx] = { ...updatedCoordinators[idx], [field]: e.target.value };
+      setEvent({ ...event, coordinators: updatedCoordinators });
+    };
+  
+    const addCoordinator = (e) => {
+      e.preventDefault();
+      setEvent({ ...event, coordinators: [...event.coordinators, { name: "", mobileNumber: "" }] });
+    };
+
     // Sponser
   const [sname,setSname]=useState("");
   const [spon,setSpon]=useState([]);
@@ -25,6 +59,7 @@ function EditEvent() {
 
     const navigate = useNavigate();
     const saveEvent=async()=>{
+        console.log(event);
         const res = await postRequestWithToken(`events/update/${event._id}`,event);
         if(res.status==200){
             toast.success("Events update succesfully.");
@@ -41,12 +76,12 @@ function EditEvent() {
       // console.log("coord",coord);
     }
   
-    const addGuest=(e)=>{
-      e.preventDefault();
-      setGuest((prevGuest)=>[...prevGuest,gname]);
-      setEvent({...event,mainGuest:guest});
-      // console.log("guest",guest);
-    }
+    // const addGuest=(e)=>{
+    //   e.preventDefault();
+    //   setGuest((prevGuest)=>[...prevGuest,gname]);
+    //   setEvent({...event,mainGuest:guest});
+    //   // console.log("guest",guest);
+    // }
   
     const addSpon=(e)=>{
       e.preventDefault();
@@ -58,13 +93,16 @@ function EditEvent() {
     useEffect(()=>{
       console.log("event",event);
 
-    },[]);
+    },[event]);
 
+    const formatDateTime = (dateTime) => {
+      return new Date(dateTime).toISOString().slice(0, 16);
+    };
   return (
     <div>
         <div className='h-full bg-white p-2'>
           <div className='md:w-1/3 w-full bg-indigo-50 h-full mx-auto p-5 border rounded-xl'>
-            <h1 className='text-center font-bold text-4xl font-serif'>Create Event</h1>
+            <h1 className='text-center font-bold text-4xl font-serif'>Edit Event</h1>
 
             {/* Event name */}
             <div className='flex flex-col justify-center gap-2'>
@@ -121,16 +159,16 @@ function EditEvent() {
                     fullWidth
                 /> */}
                 <input type="datetime-local" name="start" id="" className='h-10 border rounded-md px-3'
-                  value={event?.startTime}
-                  onChange={(e)=>setEvent({...event,startTime:e.target.value})}
+                  value={event?.startTime ? formatDateTime(event.startTime) : ""}
+                  onChange={(e) => setEvent({ ...event, startTime: e.target.value })}
                 />
                </div>
               {/* End time */}
                <div className='flex flex-col gap-2'>
                 <label htmlFor="cap">End Time:</label>
                 <input type="datetime-local" name="" id="" className='h-10 border rounded-md px-3'
-                  value={event?.endTimeTime}
-                  onChange={(e)=>setEvent({...event,endTime:e.target.value})}
+                  value={event?.endTime ? formatDateTime(event.endTime) : ""}
+                  onChange={(e) => setEvent({ ...event, endTime: e.target.value })}
                 />
                </div>
             </div>
@@ -188,50 +226,70 @@ function EditEvent() {
                </div>
             </div>
 
+            <h1>Main Guest's Details:</h1>
             {/* Main Guest */}
             {
               event?.mainGuest?.map((guest,idx)=>{
+                console.log("guest",guest);
+                // setGname(guest);
                 return(
-                  <div className='flex flex-col justify-center gap-2'>
-                  <h1>Main Guest's Details:</h1>
+                  <div key={idx} className='flex flex-col justify-center gap-2'>
                   <input type="text" placeholder='Main Guest Name' className='h-10 border rounded-md px-3'
                     value={guest}
-                    onChange={(e)=>setGname(e.target.value)}/>
-                  <button className='btn bg-indigo-600 border rounded-md h-10 hover:bg-slate-500 text-white font-semibold' onClick={addGuest}>Add Main Guest</button>
+                    onChange={(e) => updateGuest(e, idx)}
+                  />
+                  {/* <button className='btn bg-indigo-600 border rounded-md h-10 hover:bg-slate-500 text-white font-semibold' onClick={addGuest}>Add Main Guest</button> */}
                   </div>
                 )
               })
             }
 
             {/* Sponser Details */}
-            <div className='flex flex-col justify-center gap-2'>
-              <h1>Sponser's Details:</h1>
-              <input type="text" placeholder='Sponser Name' className='h-10 border rounded-md px-3'
-                value={sname}
-                onChange={(e)=>setSname(e.target.value)}/>
-              {/* <input type="url" name="slink" id="" placeholder='Sponser link' className='h-10 border rounded-md px-3'/> */}
-              <button className='btn bg-indigo-600 border rounded-md h-10 hover:bg-slate-500 text-white font-semibold' onClick={addSpon}>Add Sponser</button>
-            </div>
+            <h1>Sponser's Details:</h1>
+            {
+              event?.sponsors?.map((sponsor,idx)=>{
+                console.log("spon",sponsor);
+                return(
+                  <div key={idx} className='flex flex-col justify-center gap-2'>
+                    <input type="text" placeholder='Sponser Name' className='h-10 border rounded-md px-3'
+                      value={sponsor}
+                      onChange={(e) => updateSponsor(e, idx)}
+                    />
+                    {/* <input type="url" name="slink" id="" placeholder='Sponser link' className='h-10 border rounded-md px-3'/> */}
+                    {/* <button className='btn bg-indigo-600 border rounded-md h-10 hover:bg-slate-500 text-white font-semibold' onClick={addSponsor}>Add Sponser</button> */}
+                  </div>
+                )
+              })
+            }
+            
 
             {/* Event Coordinator */}
-            <div className='flex flex-col justify-center gap-2'>
-              <h1 className='mt-2'>Event Coordinator Details:</h1>
-              <label htmlFor="name">Name</label>
-              <input type="text" className='h-10 border rounded-md px-3'
-                value={formInput?.name}
-                onChange={(e)=>setFormInput({...formInput,name:e.target.value})}/>
-              <label htmlFor="phone">Mobile No</label>
-              <input type="number" name="phone" id="" className='h-10 border rounded-md px-3'
-               value={formInput?.mobileNumber}
-               onChange={(e)=>setFormInput({...formInput,mobileNumber:e.target.value})}/>
-              <button className='btn bg-indigo-600 border rounded-md h-10 hover:bg-slate-500 text-white font-semibold' onClick={addCoordi}>Add Coordinator</button>
-            </div>
+            <h1 className='mt-2'>Event Coordinator Details:</h1>
+            {
+              event?.coordinators?.map((coordinator,idx)=>{
+                console.log("coord",coordinator);
+                return(
+                  <div key={idx} className='flex flex-col justify-center gap-2'>
+                    <label htmlFor="name">Name</label>
+                    <input type="text" className='h-10 border rounded-md px-3'
+                      value={coordinator?.name}
+                      onChange={(e) => updateCoordinator(e, idx, "name")}
+                    />
+                    <label htmlFor="phone">Mobile No</label>
+                    <input type="number" name="phone" id="" className='h-10 border rounded-md px-3'
+                    value={coord?.mobileNumber}
+                    onChange={(e)=>setFormInput({...formInput,mobileNumber:e.target.value})}/>
+                    {/* <button className='btn bg-indigo-600 border rounded-md h-10 hover:bg-slate-500 text-white font-semibold' onClick={addCoordinator}>Add Coordinator</button> */}
+                  </div>
+                )
+              })
+            }
 
             {/* Add Event */}
             <div className='flex flex-col justify-center gap-2 pt-2'>
               <button 
                 className='btn bg-indigo-600 border rounded-md h-10 hover:bg-slate-500 text-white font-semibold'
-                onClick={saveEvent}>Add Event</button>
+                onClick={saveEvent}>Update Event</button>
             </div>
             
           </div>

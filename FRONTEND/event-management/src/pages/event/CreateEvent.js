@@ -48,31 +48,40 @@ function CreateEvent() {
   const addCoordi=(e)=>{
     e.preventDefault();
     setCoord((prevCoord)=>[...prevCoord,formInput]);
-    setEvent({...event,coordinators:coord});
+    // setEvent({...event,coordinators:coord});
     // console.log("coord",coord);
   }
 
   const addGuest=(e)=>{
     e.preventDefault();
     setGuest((prevGuest)=>[...prevGuest,gname]);
-    setEvent({...event,mainGuest:guest});
+    // setEvent({...event,mainGuest:guest});
     // console.log("guest",guest);
   }
 
   const addSpon=(e)=>{
     e.preventDefault();
     setSpon((prevSpon)=>[...prevSpon,sname]);
-    setEvent({...event,sponsors:spon});
+    // setEvent({...event,sponsors:spon});
     // console.log("spon",spon);
   }
 
   const addEvent=async(e)=>{
     e.preventDefault();
+    const updatedEvent = {
+      ...event,
+      sponsors: spon,
+      mainGuest: guest,
+      coordinators: coord,
+    };
+    setEvent(updatedEvent);
+    // console.log(updatedEvent);
+    
     console.log(event);
-    const res = await postRequestWithToken("events/create",event);
+    const res = await postRequestWithToken("events/create",updatedEvent);
     console.log("res",res);
     if(res?.status==200){
-      navigate('/allevents');
+      // navigate('/allevents');
     }else{
       toast.error("Error");
     }
@@ -91,8 +100,8 @@ function CreateEvent() {
   };
     
   useEffect(()=>{
-
-  },[])
+    console.log("event",event);
+  },[event])
   return (
     <div>
         <div className='h-full bg-white p-2'>

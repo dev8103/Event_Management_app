@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
+import { getRequestWithToken } from '../services/Api';
 
 const event1={
     "id": "evt001",
@@ -18,18 +19,15 @@ function EventCard({event}) {
     const moreDetail=()=>{
         navigate('/eventdetails',{state:{event}});
     }
-    const checkRegi=()=>{
-        let cap=event.capacity;
-        let registered=event.registeredCount;
-        console.log("cap",cap);
-        console.log("registered",registered);
-        if(cap>registered){
-            event.registeredCount++;
+    const regiCount=async()=>{
+        console.log("regicount");
+        const res = await getRequestWithToken(`events/register/${event?._id}`);
+        if(res?.status==200){
+            toast.success("Succesfully Registered.");
         }else{
-            toast.error("Registered Full!")
+            toast.error("Please Try Again Later...");
         }
     }
-    
   return (
     <div className='h-full flex justify-center'>
         <div className='w-full h-full bg-white flex flex-col md:flex-row sm:items-center  border rounded-tl-3xl rounded-br-3xl'>
@@ -59,9 +57,9 @@ function EventCard({event}) {
                     <p className='pt-2'>{event.registeredCount}</p>
                 </div>
                 <div className='flex gap-4 pt-2'>
-                    <button className='bg-indigo-600 text-white rounded-xl h-10 w-1/2 px-5 font-bold text-md hover:bg-white hover:text-blue-600 hover:border hover:border-blue-700'
-                            onClick={()=>checkRegi()}>Register</button>
-                    <button className='bg-indigo-600 text-white rounded-xl h-10 w-1/2 px-5 font-bold text-md hover:bg-white hover:text-blue-600 hover:border hover:border-blue-700'
+                    <button className='bg-indigo-600 text-gray-50 rounded-xl h-10 w-1/2 px-5 font-bold text-md hover:bg-white hover:text-blue-600 hover:border hover:border-blue-700'
+                            onClick={()=>regiCount()}>Register</button>
+                    <button className='bg-indigo-600 text-gray-50 rounded-xl h-10 w-1/2 px-5 font-bold text-md hover:bg-white hover:text-blue-600 hover:border hover:border-blue-700'
                             onClick={()=>moreDetail()}>Details...</button>
                 </div>
             </div>
