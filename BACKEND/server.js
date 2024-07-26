@@ -98,26 +98,6 @@ app.post('/student/changepassword', auth, changePasswordStudent);
 app.post('/student/forgotpassword', forgotPasswordStudent);
 app.post('/student/updateforgotpassword',updateForgotPassword);
 
-// upload image into backend
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb){
-        return cb(null,"./uploads");
-    },
-    filename: function (req, file, cb){
-        return cb(null,`${Date.now()}-${file.originalname}`);
-    }
-})
-
-const upload = multer({storage});
-
-app.post('/events/uploadbanner', upload.single("banner"), (req,res)=>{
-    console.log(req.file);
-    return res.status(200).json({
-        message:"Image uploaded successfully.",
-        bannerpath:req.file.path,
-    });
-});
 
 // invalid urls handling..
 app.all('*',(req,res)=>{

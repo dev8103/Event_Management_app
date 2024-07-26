@@ -14,8 +14,7 @@ const registerOnEvent = ( async (req,res)=>{
     }
     catch(err){
         console.log("This error is coming from student/registerOnEvent.js 1");
-        res.status(401).json({message:err.message});
-        return;
+        return res.status(400).json({message:err.message});
     }
 
     // check if event is present or not
@@ -27,8 +26,7 @@ const registerOnEvent = ( async (req,res)=>{
     }
     catch(err){
         console.log("This error is coming from student/registerOnEvent.js 2");
-        res.status(400).json({message:err.message});
-        return;
+        return res.status(400).json({message:err.message});
     }
 
     // check if event is in past or not.
@@ -41,8 +39,7 @@ const registerOnEvent = ( async (req,res)=>{
     }
     catch(err){
         console.log("This error is coming from student/registerOnEvent.js 3");
-        res.status(400).json({message:err.message});
-        return;
+        return res.status(400).json({message:err.message});
     }
 
     const startTime = curEvent.startTime;
@@ -53,8 +50,7 @@ const registerOnEvent = ( async (req,res)=>{
     }
     catch(err){
         console.log("This error is coming from student/registerOnEvent.js 4");
-        res.status(400).json({message:err.message});
-        return;
+        return res.status(400).json({message:err.message});
     }
 
 
@@ -69,8 +65,7 @@ const registerOnEvent = ( async (req,res)=>{
     }
     catch(err){
         console.log("This error is coming from student/registerOnEvent.js 5");
-        res.status(400).json({message:err.message});
-        return;
+        return res.status(400).json({message:err.message});
     }
     
 
@@ -84,19 +79,18 @@ const registerOnEvent = ( async (req,res)=>{
     }
     catch(err){
         console.log("This error is coming from student/registerOnEvent.js 6");
-        res.status(400).json({message:err.message});
-        return;
+        return res.status(400).json({message:err.message});
+
     }
 
     try{
         const addIntoRegistered = await RegisteredModel.create({eventId,userEmail});
         const updateEvent = await eventModel.findByIdAndUpdate(req.params.id,{curCapacity:newCapacity},{new:true});
-        res.status(200).json({message:"Registered successfully"});
+        return res.status(200).json({message:"Registered successfully"});
     }
     catch(err){
         console.log("This error is coming from student/registerOnEvent.js 7");
-        res.status(400).json({message:err.message});
-        return;
+        return res.status(400).json({message:err.message});
     }
 });
 
