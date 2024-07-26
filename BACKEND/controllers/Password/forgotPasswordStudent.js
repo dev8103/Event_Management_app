@@ -21,8 +21,7 @@ const forgotPassword = async (req,res)=>{
     catch(error){
         console.log("This error is coming from controllers/students/forgotpassword.js not signed up part");
         console.log(error);
-        res.status(400).json({message:error.message});
-        return;
+        return res.status(400).json({message:error.message});
     }
 
     const match = await otp.findOne({email});
@@ -51,7 +50,7 @@ const forgotPassword = async (req,res)=>{
             otp_number:hashed_otp,
         })
 
-        res.status(200).json({message:"Email sent successfully."});
+        return res.status(200).json({message:"Email sent successfully."});
     }
     catch(error){
         console.log('This error is coming from forgotPassword.js/mailer part.');

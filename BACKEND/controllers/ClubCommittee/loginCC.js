@@ -20,8 +20,7 @@ const loginCC = async (req,res)=>{
     catch(error){
         console.log("This error is coming from loginCC.js/field part");
         console.log(error);
-        res.status(401).json({message:error.message});
-        return;
+        return res.status(401).json({message:error.message});
     }
 
     // validation part
@@ -36,8 +35,7 @@ const loginCC = async (req,res)=>{
     catch(error){
         console.log("This error is coming from loginCC.js/validation part");
         console.log(error);
-        res.status(401).json({message:error.message});
-        return;
+        return res.status(401).json({message:error.message});
     }
     
     // password verification part
@@ -71,8 +69,8 @@ const loginCC = async (req,res)=>{
     catch(error){
         console.log("This error is coming from loginCC.js/password verification part");
         console.log(error);
-        res.status(401).json({message:error.message});
-        return;
+        return res.status(401).json({message:error.message});
+
     }
 
 };

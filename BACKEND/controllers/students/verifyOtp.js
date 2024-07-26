@@ -27,7 +27,7 @@ const verifyOtp = async (req,res)=>{
     catch(error){
         console.log("This error is coming from verifyOtp.js");
         console.log(error);
-        res.status(400).send();
+        return res.status(400).send();
     }
 }
 

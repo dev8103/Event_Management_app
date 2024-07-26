@@ -21,8 +21,7 @@ const verifyEmail = async (req,res)=>{
     catch(error){
         console.log("This error is coming from controllers/students/verifyEmail.js not signed up part");
         console.log(error);
-        res.status(400).json({message:error.message});
-        return;
+        return res.status(400).json({message:error.message});
     }
 
     // check whether student already verified
@@ -35,8 +34,7 @@ const verifyEmail = async (req,res)=>{
     catch(error){
         console.log("This error is coming from controllers/students/verifyEmail.js already verified part");
         console.log(error);
-        res.status(400).json({message:error.message});
-        return;
+        return res.status(400).json({message:error.message});
     }
 
     const match = await otp.findOne({email});
@@ -65,7 +63,7 @@ const verifyEmail = async (req,res)=>{
         })
         const mailer = mailforsignup(email,newotp_number);
 
-        res.status(200).json({message:"Email sent successfully."});
+        return res.status(200).json({message:"Email sent successfully."});
     }
     catch(error){
         console.log('This error is coming from verifyEmail.js/mailer part.');

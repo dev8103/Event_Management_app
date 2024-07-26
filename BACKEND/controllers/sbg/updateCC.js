@@ -29,12 +29,12 @@ const updateCC =  (async (req,res)=>{
         }
 
         const updatedClubCommittee = await ClubCommittee.findByIdAndUpdate(req.params.id,req.body,{new:true});
-        res.status(200).json(updatedClubCommittee);
+        return res.status(200).json(updatedClubCommittee);
     }
     catch(error){
         console.log("this error is coming from controllers/ClubCommittee/updateCC.js");
         console.log(error);
-        res.status(404).json({message :error.message});
+        return res.status(404).json({message :error.message});
     }
 })
 

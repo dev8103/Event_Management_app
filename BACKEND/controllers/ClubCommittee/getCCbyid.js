@@ -7,12 +7,12 @@ const getCCbyid =  (async (req,res)=>{
             throw new Error("Club/Committee not Found.");    
         }
 
-        res.status(200).json(curClubCommittee);
+        return res.status(200).json(curClubCommittee);
     }
     catch(error){
         console.log("this error is coming from controllers/ClubCommittee/getCCbyid.js");
         console.log(error);
-        res.status(404).json({message :error.message});
+        return res.status(404).json({message :error.message});
     }
 })
 

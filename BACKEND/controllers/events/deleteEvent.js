@@ -29,12 +29,12 @@ const deleteEvent =  (async (req,res)=>{
         }
 
         const deletedEvent = await Event.findByIdAndDelete(req.params.id);
-        res.status(200).json(deletedEvent);
+        return res.status(200).json(deletedEvent);
     }
     catch(error){
         console.log("this error is coming from controllers/events/deleteEvent");
         console.log(error);
-        res.status(404).json({message :error.message});
+        return res.status(404).json({message :error.message});
     }
 })
 

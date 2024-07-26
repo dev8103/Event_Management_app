@@ -29,12 +29,12 @@ const updateEvent =  (async (req,res)=>{
         }
 
         const updatedEvent = await Event.findByIdAndUpdate(req.params.id,req.body,{new:true});
-        res.status(200).json(updatedEvent);
+        return res.status(200).json(updatedEvent);
     }
     catch(error){
         console.log("this error is coming from controllers/events/updateEvent");
         console.log(error);
-        res.status(404).json({message :error.message});
+        return res.status(404).json({message :error.message});
     }
 })
 

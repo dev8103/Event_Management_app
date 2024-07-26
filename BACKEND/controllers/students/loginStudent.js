@@ -20,8 +20,7 @@ const loginStudent = async (req,res)=>{
     catch(error){
         console.log("This error is coming from loginStudent.js/field part");
         console.log(error);
-        res.status(401).json({message:error.message});
-        return;
+        return res.status(401).json({message:error.message});
     }
 
     // validation part
@@ -36,8 +35,7 @@ const loginStudent = async (req,res)=>{
     catch(error){
         console.log("This error is coming from loginStudent.js/validation part");
         console.log(error);
-        res.status(401).json({message:error.message});
-        return;
+        return res.status(401).json({message:error.message});
     }
 
     // verification part
@@ -52,8 +50,7 @@ const loginStudent = async (req,res)=>{
     catch(error){
         console.log("This error is coming from loginStudent.js/verification part");
         console.log(error);
-        res.status(401).json({message:error.message});
-        return;
+        return res.status(401).json({message:error.message});
     }
     
     // password verification part
@@ -87,8 +84,7 @@ const loginStudent = async (req,res)=>{
     catch(error){
         console.log("This error is coming from loginStudent.js/password verification part");
         console.log(error);
-        res.status(401).json({message:error.message});
-        return;
+        return res.status(401).json({message:error.message});
     }
 
 };

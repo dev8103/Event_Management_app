@@ -28,12 +28,12 @@ const deleteCC =  (async (req,res)=>{
         }
 
         const deletedClubCommittee = await ClubCommittee.findByIdAndDelete(req.params.id);
-        res.status(200).json(deletedClubCommittee);
+        return res.status(200).json(deletedClubCommittee);
     }
     catch(error){
         console.log("this error is coming from controllers/ClubCommittee/deleteCC.js");
         console.log(error);
-        res.status(404).json({message :error.message});
+        return res.status(404).json({message :error.message});
     }
 })
 

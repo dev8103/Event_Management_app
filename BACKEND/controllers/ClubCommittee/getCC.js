@@ -13,17 +13,18 @@ const getCC =  (async (req,res)=>{
     catch(error){
         console.log("this error is coming from controllers/ClubCommittee/getCC.js authorisation part");
         console.log(error);
-        res.status(401).json({message :error.message});
+        return res.status(401).json({message :error.message});
     }
 
     try{
         const ClubCommittees = await ClubCommittee.find();
-        res.status(200).json(ClubCommittees);
+        return res.status(200).json(ClubCommittees);
     }
     catch(error){
         console.log("this error is coming from controllers/ClubCommittee/getCC.js");
         console.log(error);
-        res.status(400).json({message :error.message});
+        return res.status(400).json({message :error.message});
+
     }
 });
 

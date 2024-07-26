@@ -8,12 +8,12 @@ const getEventbycc = async (req,res)=>{
         if(!onlineEvents){
             throw new Error("Online events not found.");
         }
-        res.status(200).json(onlineEvents);
+        return res.status(200).json(onlineEvents);
     }   
     catch(error){
         console.log("this error is coming from controllers/events/getUpcomingEvents");
         console.log(error);
-        res.status(404).json({message :error.message});
+        return res.status(404).json({message :error.message});
     }
 }
 

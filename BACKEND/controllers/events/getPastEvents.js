@@ -8,12 +8,12 @@ const getEventbycc = async (req,res)=>{
         if(!pastEvents){
             throw new Error("Past events not found.");
         }
-        res.status(200).json(pastEvents);
+        return res.status(200).json(pastEvents);
     }   
     catch(error){
         console.log("this error is coming from controllers/events/getPastEvents");
         console.log(error);
-        res.status(404).json({message :error.message});
+        return res.status(404).json({message :error.message});
     }
 }
 

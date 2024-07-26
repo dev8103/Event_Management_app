@@ -39,12 +39,12 @@ const createCC =  (async (req,res)=>{
             email,
             password:hashedpassword,
         })
-        res.status(200).json(newClubCommitee);
+        return res.status(200).json(newClubCommitee);
     }
     catch(error){
         console.log("this error is coming from controllers/ClubCommittee/createCC.js");
         console.log(error);
-        res.status(400).json({message :error.message});
+        return res.status(400).json({message :error.message});
     }
 })
 

@@ -10,12 +10,12 @@ const updateProfileStudent =  (async (req,res)=>{
         }
 
         const updatedStudent = await Student.findByIdAndUpdate(req.params.id,req.body,{new:true});
-        res.status(200).json(updatedStudent);
+        return res.status(200).json(updatedStudent);
     }
     catch(error){
         console.log("this error is coming from controllers/student/updateProfileStudent.js");
         console.log(error);
-        res.status(404).json({message :error.message});
+        return res.status(404).json({message :error.message});
     }
 })
 

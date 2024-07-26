@@ -15,7 +15,6 @@ const createEvent =  (async (req,res)=>{
         const isExist = await clubcommittee.findOne({email:clubCommitteeEmail});
         console.log(isExist);
         if(clubCommitteeEmail!=='sbg@daiict.ac.in' && isExist == null){
-            res.status(401);
             throw new Error("User is unauthorised.");
         }
     }
@@ -85,7 +84,7 @@ const createEvent =  (async (req,res)=>{
             mailforsignup(email,name,description,startTime,endTime,venue);
         }
 
-        res.status(200).json({message:"New Event is created successfully."});
+        return res.status(200).json({message:"New Event is created successfully."});
     }
     catch(error){
         console.log("this error is coming from controllers/events/createEvent");

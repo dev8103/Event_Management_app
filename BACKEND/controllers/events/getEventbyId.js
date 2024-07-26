@@ -8,12 +8,12 @@ const getEventbyId =  (async (req,res)=>{
             throw new Error("Event not Found.");    
         }
 
-        res.status(200).json(curEvent);
+        return res.status(200).json(curEvent);
     }
     catch(error){
         console.log("this error is coming from controllers/events/getEventbyId");
         console.log(error);
-        res.status(400).json({message :error.message});
+        return res.status(400).json({message :error.message});
     }
 })
 

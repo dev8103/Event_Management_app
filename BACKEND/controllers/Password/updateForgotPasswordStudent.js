@@ -15,8 +15,7 @@ const changePasswordStudent = (async (req,res)=>{
     }
     catch(err){
         console.log("This error is coming from student/updateForgotPassword.js otp existance part");
-        res.status(500).json({message:err.message});
-        return;
+        return res.status(500).json({message:err.message});
     }
     
     const hashed_otp = data.otp_number;
@@ -28,8 +27,7 @@ const changePasswordStudent = (async (req,res)=>{
     }
     catch(err){
         console.log("This error is coming from student/updateForgotPassword.js otp validation");
-        res.status(500).json({message:err.message});
-        return;
+        return res.status(500).json({message:err.message});
     }
     
     // update to new password
@@ -39,11 +37,11 @@ const changePasswordStudent = (async (req,res)=>{
         const filter = {email};
         const update = {password:newHashedPassword};
         const updatedStudent = await studentModel.findOneAndUpdate(filter,update,{new:true});
-        res.status(200).json({message:"Password changed successfully."});
+        return res.status(200).json({message:"Password changed successfully."});
     }
     catch(error){
         console.log("This error is coming from students/changepassword.js change part");
-        res.status(400).json({message:error.message});
+        return res.status(400).json({message:error.message});
     }
 
 });

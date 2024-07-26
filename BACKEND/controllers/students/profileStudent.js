@@ -10,7 +10,7 @@ const profileStudent = async (req,res)=>{
             res.status(400);
             throw new Error("Student not found.");
         }
-        res.status(200).json(curStudent);
+        return res.status(200).json(curStudent);
     }
     catch(error){
         console.log("this error is coming from controllers/students/profileStudent");

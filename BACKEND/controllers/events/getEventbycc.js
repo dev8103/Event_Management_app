@@ -15,8 +15,8 @@ const getEventbycc = async (req,res)=>{
         catch(error){
             console.log("This error is coming from getEventscc.js/auth part");
             console.log(error);
-            res.status(401).json({message:error.message});
-            return;
+            return res.status(401).json({message:error.message});
+
         }
 
         // console.log(email);
@@ -26,13 +26,13 @@ const getEventbycc = async (req,res)=>{
             throw new Error("No data found.");
         }
         else{
-            res.status(200).json(curEvents);
+            return res.status(200).json(curEvents);
         }
     }   
     catch(error){
         console.log("this error is coming from controllers/events/getEventbycc");
         console.log(error);
-        res.status(404).json({message :error.message});
+        return res.status(404).json({message :error.message});
     }
 }
 

@@ -14,8 +14,7 @@ const changePasswordStudent = (async (req,res)=>{
     }
     catch(error){
         console.log("This error is coming from changePassword.js auth part");
-        res.status(401).json({message:error.message});
-        return;
+        return res.status(401).json({message:error.message});
     }
 
     const oldPassword = req.body.oldPass;
@@ -30,8 +29,7 @@ const changePasswordStudent = (async (req,res)=>{
     }
     catch(error){
         console.log("This error is coming from students/changepassword.js check part");
-        res.status(401).json({message:error.message});
-        return;
+        return res.status(401).json({message:error.message});
     }
     
     // update to new password
@@ -40,12 +38,11 @@ const changePasswordStudent = (async (req,res)=>{
         const filter = {email};
         const update = {password:newHashedPassword};
         const updatedStudent = await studentModel.findOneAndUpdate(filter,update,{new:true});
-        res.status(200).json({message:"Password changes successfully."});
-        return;
+        return res.status(200).json({message:"Password changes successfully."});
     }
     catch(error){
         console.log("This error is coming from students/changepassword.js change part");
-        res.status(400).json({message:error.message});
+        return res.status(400).json({message:error.message});
     }
 
 });
